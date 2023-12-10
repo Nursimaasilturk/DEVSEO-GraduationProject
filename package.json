@@ -1,0 +1,59 @@
+{
+  "name": "devseo",
+  "displayName": "devseo",
+  "description": "An extension for support about SEO-Friendly coding process",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [{
+      "command": "devseo.devseo",
+      "title": "Start Devseo"
+    },
+    {
+      "command": "devseo.tursu",
+      "title": "Turşu taraması başlatıldı"
+    }],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "package-explorer",
+          "title": "Package Explorer",
+          "icon": "resources/package-explorer.svg"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "nodeDependencies",
+          "name": "Node Dependencies",
+          "when": "workspaceHasPackageJSON",
+          "icon": "media/dep.svg",
+          "contextualTitle": "Package Explorer"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/mocha": "^10.0.3",
+    "@types/node": "18.x",
+    "eslint": "^8.52.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2",
+    "@vscode/test-electron": "^2.3.6"
+  }
+}
