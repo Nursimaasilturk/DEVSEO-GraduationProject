@@ -1,6 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
+
+
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const axios = require('axios');
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -8,7 +11,7 @@ const vscode = require('vscode');
 /**
  * @param {vscode.ExtensionContext} context
  */
-function activate(context) {
+async function activate(context) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
@@ -24,7 +27,17 @@ function activate(context) {
 		vscode.window.showInformationMessage('SEO optimization started!');
 	});
 
+	//const result = await axios('https://api.agify.io/?name=John')
+	//console.log(result);
+	
 	let tursuKomut = vscode.commands.registerCommand("devseo.tursu",function(){
+		const editor = vscode.window.activeTextEditor;
+
+		if(editor){
+			const  text =  editor.document.getText(editor.selection);
+			checkAge(text);
+		}
+		
 		vscode.window.showWarningMessage('Tursu komutu calisti');
 	})
 
@@ -32,6 +45,10 @@ function activate(context) {
 	context.subscriptions.push(tursuKomut);
 }
 
+async function checkAge(name){
+	const result = await axios(`https://api.agify.io/?name=${name}`)
+	vscode.window.showInformationMessage(`Adınız: ${result.data.name} - Tahmini yaşınız: ${result.data.age}`);
+}
 // This method is called when your extension is deactivated
 function deactivate() {}
 
