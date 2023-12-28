@@ -20,6 +20,10 @@
       {
         "command": "devseo.tursu",
         "title": "Turşu taraması başlatıldı"
+      },
+      {
+        "command": "devseo.readPage",
+        "title": "Sayfa içeriğini al"
       }
     ],
     "viewsContainers": {
@@ -59,6 +63,8 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "axios": "^1.6.2"
+    "axios": "^1.6.2",
+    "pdfkit": "^0.14.0",
+    "puppeteer": "^21.6.1"
   }
 }
