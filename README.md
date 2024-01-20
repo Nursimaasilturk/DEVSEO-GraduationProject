@@ -13,6 +13,3 @@ https://docs.google.com/document/d/1f79wWRahMtj3Wekr06vRVpEh7Cng677Cb-J__uTmHXg/
 ****
 
 4. Ruleslar arttırılacak
-5. Font değişimi & design
-6. Emoji Ekleme
-

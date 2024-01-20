@@ -8,5 +8,6 @@ const lightFont = path.join(__dirname, '../assets/fonts/ubuntu/Ubuntu-Light.ttf'
 
 module.exports = {
     titleFont,
-    baseFont
+    baseFont,
+    lightFont
 };

@@ -1,17 +1,12 @@
-
-// The module 'vscode' contains the VS Code extensibility API
 const fs = require('fs');
 const path = require('path');
 const PDFDocument = require('pdfkit');
 const OpenAI = require('openai');
 let { chatGptAPIKey } = require('./env/credentials.js');
-let { titleFont, baseFont } = require('./core/fonts.js');
-
+let { titleFont, baseFont, lightFont } = require('./core/fonts.js');
 let pageChecks = require('./core/pageChecks.js');
-
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
-const axios = require('axios');
+
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -67,18 +62,7 @@ async function activate(context) {
 		const text = editor.document.getText();
 		// let openAIAdviceText = await openAIApi(text);
 
-		let h1Problems = pageChecks.checkH1Tags(text);
-		let footerProblems = pageChecks.checkFooterTags(text);
-		let titleProblems = pageChecks.checkTitleTag(text);
-		let metaDescriptionTagProblems = pageChecks.checkMetaDescriptionTag(text);
-		let checkMetaTagKeywords = pageChecks.checkMetaKeywordsTag(text);
-
-		pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${h1Problems}\nPAGE_CONTENT\n`);
-		pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${footerProblems}\nPAGE_CONTENT\n`);
-		pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${titleProblems}\nPAGE_CONTENT\n`);
-		pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${metaDescriptionTagProblems}\nPAGE_CONTENT\n`);
-		pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${checkMetaTagKeywords}\nPAGE_CONTENT\n`);
-		
+	
 		pageIssuesList = pageIssuesList.replace('PAGE_CONTENT','');
 
 		//normalization uygulayıp satır sonlarını düzenledik
@@ -95,19 +79,18 @@ async function activate(context) {
 		//pdfDoc.fillColor('white');
 
 		pdfDoc.fontSize(24);
+		pdfDoc.fillColor('#2d8bba');
 		pdfDoc.font(titleFont);
-		pdfDoc.text("SEO REPORT\n", {
+		pdfDoc.text("SINGLE PAGE SEO REPORT\n", {
 			align: 'center',
-		  });
+		});
 		
 		pdfDoc.font(baseFont);
+		pdfDoc.fillColor('black');
 		pdfDoc.fontSize(8);
-		pdfDoc.text("\n" + "*".repeat(100) + "\n\n",{
-			align:'center'
-		});
 
-		const imageWidth = 100;
-		const imageHeight = 100;
+		const imageWidth = 150;
+		const imageHeight = 150;
 	
 		// Calculate the position to center the image
 		const pageWidth = pdfDoc.page.width;
@@ -118,7 +101,14 @@ async function activate(context) {
 		// Add the image at the calculated position
 		pdfDoc.image(imagePath, xPosition, yPosition, { fit: [imageWidth, imageHeight] });
 
-		pdfDoc.text("\n".repeat(20));
+		pdfDoc.text("\n".repeat(25));
+
+		pageChecks.checkH1Tags(text,pdfDoc);
+		pageChecks.checkFooterTags(text,pdfDoc);
+		pageChecks.checkTitleTag(text,pdfDoc);
+		pageChecks.checkMetaKeywordsTag(text,pdfDoc);
+		pageChecks.checkMetaDescriptionTag(text,pdfDoc);
+
 		pdfDoc.text(pageIssuesList);
 		//setPageStyles(pdfDoc);
 		pdfDoc.fontSize(20);
@@ -136,6 +126,7 @@ async function activate(context) {
 
 //		pdfDoc.text(openAIAdviceText.choices[0].message.content);
 		//setPageStyles(pdfDoc);
+		pdfDoc.font(lightFont);
 		pdfDoc.text("\n\n\nAll Rights Reserved - Nursima Asiltürk & Ömer Atayilmaz\n\n\n",{
 			align:'center'
 		});
@@ -207,10 +198,6 @@ async function activate(context) {
 	context.subscriptions.push(readAllPagesData);
 }
 
-async function checkAge(name){
-	const result = await axios(`https://api.agify.io/?name=${name}`)
-	vscode.window.showInformationMessage(`Adınız: ${result.data.name} - Tahmini yaşınız: ${result.data.age}`);
-}
 
 //NORMALIZATION YAPILDI
 
