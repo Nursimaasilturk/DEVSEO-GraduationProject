@@ -11,13 +11,8 @@ https://docs.google.com/document/d/1f79wWRahMtj3Wekr06vRVpEh7Cng677Cb-J__uTmHXg/
 
 
 ****
- - PDF tasarımı düzenlenecek 
- her kontrolün başına ilgili ek eklenecek
- H1 CHECK
- [SUCCESS] H1 Tags used correctly
- gibi, "h1 check" font-size daha büyük olacak
 
- - Eklenebiliyorsa emoji koyulacak
+4. Ruleslar arttırılacak
+5. Font değişimi & design
+6. Emoji Ekleme
 
- - Open AI Bağlanacak
- 

@@ -1,5 +1,5 @@
 const checkH1Tags = (pageContent) => {
-    const title = "H1 CHECK"
+
 	const h1TagCount = (pageContent.match(/<h1\b[^>]*>(.*?)<\/h1>/gi) || []).length;
 	if (h1TagCount === 0) {
 		return "[WARNING] No <h1> tags found. A single page must has one <h1> Tag\n";

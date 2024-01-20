@@ -18,12 +18,11 @@
         "title": "Start Devseo"
       },
       {
-        "command": "devseo.tursu",
-        "title": "Turşu taraması başlatıldı"
-      },
-      {
         "command": "devseo.readPage",
         "title": "Sayfa içeriğini al"
+      },{
+        "command": "devseo.readAllPages",
+        "title" : "Tüm HTML Sayfaları Tara"
       }
     ],
     "viewsContainers": {

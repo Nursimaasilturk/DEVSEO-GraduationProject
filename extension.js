@@ -1,11 +1,11 @@
+
 // The module 'vscode' contains the VS Code extensibility API
 const fs = require('fs');
 const path = require('path');
 const PDFDocument = require('pdfkit');
 const OpenAI = require('openai');
-
-
-
+let { chatGptAPIKey } = require('./env/credentials.js');
+let { titleFont, baseFont } = require('./core/fonts.js');
 
 let pageChecks = require('./core/pageChecks.js');
 
@@ -38,20 +38,9 @@ async function activate(context) {
 	//const result = await axios('https://api.agify.io/?name=John')
 	//console.log(result);
 	
-	let tursuKomut = vscode.commands.registerCommand("devseo.tursu",function(){
-		const editor = vscode.window.activeTextEditor;
-
-		if(editor){
-			const  text =  editor.document.getText(editor.selection);
-			checkAge(text);
-		}
-		
-		vscode.window.showWarningMessage('Tursu komutu calisti');
-	})
-
 	let readPageData = vscode.commands.registerCommand("devseo.readPage",async function(){
 		
-		let pageIssuesList = "PAGE_CONTENT\n All Rights Reserved - Nursima Asiltürk & Ömer Atayilmaz";
+		let pageIssuesList = "PAGE_CONTENT\n";
 
 		//aktif sayfa
 		const editor = vscode.window.activeTextEditor;
@@ -76,7 +65,7 @@ async function activate(context) {
 		const imagePath = path.join(__dirname, '/assets/images/logo.png');
 		//açık ve aktif sayfadan içeriği aldık
 		const text = editor.document.getText();
-		// let openAIAdvices = openAIApi(text);
+		// let openAIAdviceText = await openAIApi(text);
 
 		let h1Problems = pageChecks.checkH1Tags(text);
 		let footerProblems = pageChecks.checkFooterTags(text);
@@ -99,19 +88,20 @@ async function activate(context) {
 		//ici bos pdf'e yazdırma islemleri
 		const pdfDoc = new PDFDocument();
 		const pdfStream = fs.createWriteStream(filePath);
+	
 		pdfDoc.pipe(pdfStream);
 
-		pdfDoc.rect(0, 0, pdfDoc.page.width, pdfDoc.page.height).fillColor('#2193b0').fill(); // Example: Light blue background
-		pdfDoc.fillColor('white');
+		//pdfDoc.rect(0, 0, pdfDoc.page.width, pdfDoc.page.height).fillColor('#2193b0').fill(); // Example: Light blue background
+		//pdfDoc.fillColor('white');
 
 		pdfDoc.fontSize(24);
-		
+		pdfDoc.font(titleFont);
 		pdfDoc.text("SEO REPORT\n", {
 			align: 'center',
 		  });
-
+		
+		pdfDoc.font(baseFont);
 		pdfDoc.fontSize(8);
-
 		pdfDoc.text("\n" + "*".repeat(100) + "\n\n",{
 			align:'center'
 		});
@@ -130,8 +120,25 @@ async function activate(context) {
 
 		pdfDoc.text("\n".repeat(20));
 		pdfDoc.text(pageIssuesList);
-	
+		//setPageStyles(pdfDoc);
+		pdfDoc.fontSize(20);
+		pdfDoc.text("\n CHAT GPT-3.4 TURBO ADVICE\n", {
+			align: 'center',
+		  });
 
+		
+		pdfDoc.fontSize(8);
+
+		pdfDoc.text("\n" + "*".repeat(100) + "\n\n",{
+			align:'center'
+		});
+
+
+//		pdfDoc.text(openAIAdviceText.choices[0].message.content);
+		//setPageStyles(pdfDoc);
+		pdfDoc.text("\n\n\nAll Rights Reserved - Nursima Asiltürk & Ömer Atayilmaz\n\n\n",{
+			align:'center'
+		});
 		pdfDoc.end();
 
 		
@@ -148,9 +155,56 @@ async function activate(context) {
 
 	});
 
+	let readAllPagesData = vscode.commands.registerCommand("devseo.readAllPages", async function(){
+		let pageIssuesList = "PAGE_CONTENT\n";
+
+		try{
+
+			const allHtmlFiles = await vscode.workspace.findFiles('**/*.html');
+			for(let singleFile of allHtmlFiles){
+				const content = await fs.promises.readFile(singleFile.fsPath,'utf8');
+				console.log(`Content of ${singleFile.path}`);
+
+				let pdfDoc = new PDFDocument();
+				let fileName = path.basename(singleFile.path).replace('.html','.pdf');
+
+				const seoFolder = path.join(__dirname, 'seo');
+				await fs.promises.mkdir(seoFolder, { recursive: true });
+
+
+				const filePath = path.join(seoFolder,fileName);
+
+				let pdfStream = fs.createWriteStream(filePath);
+				pdfDoc.pipe(pdfStream);
+		
+				pdfDoc.fontSize(24);
+		
+				pdfDoc.text(`SEO REPORT FOR PAGE ${fileName.toUpperCase()} \n`, {
+					align: 'center',
+				});
+				pdfDoc.text(pageIssueChecker(content,pageIssuesList));
+
+				pdfDoc.end();
+				//pdf taramasi bittiğinde
+				pdfStream.on('finish', () => {
+					vscode.window.showInformationMessage(`PDF exported to: ${filePath}`);
+				});
+
+				//pdf taramasinda hata alinirsa
+				pdfStream.on('error', (err) => {
+					vscode.window.showErrorMessage(`Error exporting PDF: ${err.message}`);
+				});
+			}
+
+		}catch(err){
+			console.error('Error reading HTML Files: ', err);
+			vscode.window.showErrorMessage('Error reading HTML files.');
+		}
+	});
+
 	context.subscriptions.push(disposable);
-	context.subscriptions.push(tursuKomut);
 	context.subscriptions.push(readPageData);
+	context.subscriptions.push(readAllPagesData);
 }
 
 async function checkAge(name){
@@ -165,28 +219,55 @@ function normalizeLineEndings(text) {
     return text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 }
 
-function openAIApi(pageContent){
-	const oaInstance = new OpenAI.OpenAI({
-		apiKey: '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'
-	});
+async function openAIApi(pageContent){
+    const oaInstance = new OpenAI.OpenAI({
+        apiKey: chatGptAPIKey
+    });
+    let answerRules = `1- Answer must be english, 2- Detect the SEO Problems and give advices, 3- Advices must be as an ordered list.(No humanly conversation only answer please!) Here is content:`
+	console.log(answerRules + pageContent);
+
+	try {
+        const response = await oaInstance.chat.completions.create({
+            model: 'gpt-3.5-turbo', 
+            messages: [{
+                role: "system",
+                content: "You are a helpful assistant."
+            },{
+                role: "user",
+                content: answerRules + pageContent
+            }]
+        });
 	
-	oaInstance.chat.completions.create({
-		model: 'gpt-3.5-turbo', 
-		messages: [{
-			role: "system",
-			content: "You are a helpful assistant."
-		},{
-			role: "user",
-			content: "Sayfayı tara, seo hatalarını bul rapor halinde" + 
-			"-> H1 Hatası(Başlık), [ÇÖZÜM]:...(1 adet kullanılmalıdı vs.) bu şekilde maddeler halinde bir çözüm istiyorum." +
-			" İçerik: "	+
-			pageContent
-		}]
-	}).then(response => {
-		console.log(response); 
-	}).catch(error => {
-		console.error(error); // Handle any errors
-	});
+
+        // Process and return the response
+        console.log(response); 
+        return response;
+    } catch (error) {
+        console.error(error); // Handle any errors
+        throw error; // Rethrow the error for further handling if needed
+    }
+}
+
+const pageIssueChecker = (pageContent, pageIssuesList)=> {
+	let h1Problems = pageChecks.checkH1Tags(pageContent);
+	let footerProblems = pageChecks.checkFooterTags(pageContent);
+	let titleProblems = pageChecks.checkTitleTag(pageContent);
+	let metaDescriptionTagProblems = pageChecks.checkMetaDescriptionTag(pageContent);
+	let checkMetaTagKeywords = pageChecks.checkMetaKeywordsTag(pageContent);
+
+	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${h1Problems}\nPAGE_CONTENT\n`);
+	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${footerProblems}\nPAGE_CONTENT\n`);
+	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${titleProblems}\nPAGE_CONTENT\n`);
+	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${metaDescriptionTagProblems}\nPAGE_CONTENT\n`);
+	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${checkMetaTagKeywords}\nPAGE_CONTENT\n`);
+	
+	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT','');
+	return pageIssuesList;
+}
+
+function setPageStyles(pdfDoc) {
+    pdfDoc.rect(0, 0, pdfDoc.page.width, pdfDoc.page.height).fillColor('#2193b0').fill(); // Background color
+    pdfDoc.fillColor('white'); // Text color
 }
 
 // This method is called when your extension is deactivated
