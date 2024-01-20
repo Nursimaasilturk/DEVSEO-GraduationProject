@@ -2,6 +2,11 @@
 const fs = require('fs');
 const path = require('path');
 const PDFDocument = require('pdfkit');
+const OpenAI = require('openai');
+
+
+
+
 let pageChecks = require('./core/pageChecks.js');
 
 // Import the module and reference it with the alias vscode in your code below
@@ -45,8 +50,8 @@ async function activate(context) {
 	})
 
 	let readPageData = vscode.commands.registerCommand("devseo.readPage",async function(){
-
-		let pageIssuesList = "SEO REPORT\nPAGE_CONTENT\n All Rights Reserved - Nursima Asiltürk & Ömer Atayilmaz";
+		
+		let pageIssuesList = "PAGE_CONTENT\n All Rights Reserved - Nursima Asiltürk & Ömer Atayilmaz";
 
 		//aktif sayfa
 		const editor = vscode.window.activeTextEditor;
@@ -68,10 +73,10 @@ async function activate(context) {
 		//export edilecek dosya adını belirledik
 		//TODO: Sonradan açarız const filePath = path.join(__dirname, `${pdfFileName}.pdf`);
 		const filePath = path.join(__dirname, `index.pdf`);
-
+		const imagePath = path.join(__dirname, '/assets/images/logo.png');
 		//açık ve aktif sayfadan içeriği aldık
 		const text = editor.document.getText();
-
+		// let openAIAdvices = openAIApi(text);
 
 		let h1Problems = pageChecks.checkH1Tags(text);
 		let footerProblems = pageChecks.checkFooterTags(text);
@@ -85,6 +90,7 @@ async function activate(context) {
 		pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${metaDescriptionTagProblems}\nPAGE_CONTENT\n`);
 		pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${checkMetaTagKeywords}\nPAGE_CONTENT\n`);
 		
+		pageIssuesList = pageIssuesList.replace('PAGE_CONTENT','');
 
 		//normalization uygulayıp satır sonlarını düzenledik
 		//const normalizedText = normalizeLineEndings(text); 
@@ -94,9 +100,42 @@ async function activate(context) {
 		const pdfDoc = new PDFDocument();
 		const pdfStream = fs.createWriteStream(filePath);
 		pdfDoc.pipe(pdfStream);
+
+		pdfDoc.rect(0, 0, pdfDoc.page.width, pdfDoc.page.height).fillColor('#2193b0').fill(); // Example: Light blue background
+		pdfDoc.fillColor('white');
+
+		pdfDoc.fontSize(24);
+		
+		pdfDoc.text("SEO REPORT\n", {
+			align: 'center',
+		  });
+
+		pdfDoc.fontSize(8);
+
+		pdfDoc.text("\n" + "*".repeat(100) + "\n\n",{
+			align:'center'
+		});
+
+		const imageWidth = 100;
+		const imageHeight = 100;
+	
+		// Calculate the position to center the image
+		const pageWidth = pdfDoc.page.width;
+		const pageHeight = pdfDoc.page.height;
+		const xPosition = (pageWidth / 2) - (imageWidth / 2);
+		const yPosition = (pageHeight / 4) - (imageHeight / 4);
+	
+		// Add the image at the calculated position
+		pdfDoc.image(imagePath, xPosition, yPosition, { fit: [imageWidth, imageHeight] });
+
+		pdfDoc.text("\n".repeat(20));
 		pdfDoc.text(pageIssuesList);
+	
+
 		pdfDoc.end();
 
+		
+		  
 		//pdf taramasi bittiğinde
 		pdfStream.on('finish', () => {
             vscode.window.showInformationMessage(`PDF exported to: ${filePath}`);
@@ -126,7 +165,29 @@ function normalizeLineEndings(text) {
     return text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 }
 
-
+function openAIApi(pageContent){
+	const oaInstance = new OpenAI.OpenAI({
+		apiKey: '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'
+	});
+	
+	oaInstance.chat.completions.create({
+		model: 'gpt-3.5-turbo', 
+		messages: [{
+			role: "system",
+			content: "You are a helpful assistant."
+		},{
+			role: "user",
+			content: "Sayfayı tara, seo hatalarını bul rapor halinde" + 
+			"-> H1 Hatası(Başlık), [ÇÖZÜM]:...(1 adet kullanılmalıdı vs.) bu şekilde maddeler halinde bir çözüm istiyorum." +
+			" İçerik: "	+
+			pageContent
+		}]
+	}).then(response => {
+		console.log(response); 
+	}).catch(error => {
+		console.error(error); // Handle any errors
+	});
+}
 
 // This method is called when your extension is deactivated
 function deactivate() {}
