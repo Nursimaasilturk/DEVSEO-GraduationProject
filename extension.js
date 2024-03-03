@@ -8,6 +8,7 @@ let pageChecks = require('./core/pageChecks.js');
 const vscode = require('vscode');
 
 
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 
@@ -24,15 +25,26 @@ async function activate(context) {
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('devseo.devseo', function () {
-		// The code you place here will be executed every time your command is executed
-
 		// Display a message box to the user
 		vscode.window.showInformationMessage('SEO optimization started!');
+		const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right,100);
+		// gösterilecek olan text
+		statusBarItem.text="$(devseo-status-bar-icon) DEVSEO";
+		// iconun üstine geldiğinde çıkan kısa açıklama
+		statusBarItem.tooltip = "Click to run SEO optimization"
+		// iconun statusbarda gösterilmesi
+		statusBarItem.show();
+		// çalışacak olan komut
+		statusBarItem.command= 'devseo.status';
 	});
-
-	//const result = await axios('https://api.agify.io/?name=John')
-	//console.log(result);
-	
+	context.subscriptions.push(disposable);
+	disposable = vscode.commands.registerCommand('devseo.status',async ()=>{
+		const d = await vscode.window.showInformationMessage("Status bar icon is worked","ok");
+		console.log(d);
+	})
+	context.subscriptions.push(disposable);
+		//const result = await axios('https://api.agify.io/?name=John')
+		//console.log(result);
 	let readPageData = vscode.commands.registerCommand("devseo.readPage",async function(){
 		
 		let pageIssuesList = "PAGE_CONTENT\n";
@@ -193,7 +205,7 @@ async function activate(context) {
 		}
 	});
 
-	context.subscriptions.push(disposable);
+	
 	context.subscriptions.push(readPageData);
 	context.subscriptions.push(readAllPagesData);
 }

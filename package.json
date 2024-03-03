@@ -23,8 +23,22 @@
       },{
         "command": "devseo.readAllPages",
         "title" : "Tüm HTML Sayfaları Tara"
+      },
+      {
+        "command": "devseo.status",
+        "title": "Status bar message"
       }
-    ],
+    ], 
+    "icons": {
+      "devseo-status-bar-icon": {
+        "icon": "assets/images/status-bar-icon.png",
+        "description": "Custom icon for DevSEO",
+        "default": {
+          "fontPath": "codicons.ttf", 
+          "fontCharacter": "\uE271" 
+        }
+      }
+    }, 
     "viewsContainers": {
       "activitybar": [
         {
