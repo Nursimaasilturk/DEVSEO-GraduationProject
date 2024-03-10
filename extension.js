@@ -39,10 +39,33 @@ async function activate(context) {
 	});
 	context.subscriptions.push(disposable);
 	disposable = vscode.commands.registerCommand('devseo.status',async ()=>{
-		const d = await vscode.window.showInformationMessage("Status bar icon is worked","ok");
-		console.log(d);
+		let editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            vscode.window.showInformationMessage("No active editor found.");
+            return;
+        }
+
+		let selection = editor.selection;
+        let selectedText = editor.document.getText(selection);
+
+		if (selectedText.includes("<img")) {
+            if (!selectedText.includes("alt")) {
+                // Eğer alt tagi yoksa, alt attribute'yi ekleyelim.
+                let updatedText = selectedText.replace("/>", "alt=\"\"/	>");
+                let position = selection.start.translate(-1, 0); // Seçimin başlangıcının üst satırına git
+                let line = editor.document.lineAt(position);
+                let edit = new vscode.WorkspaceEdit();
+                edit.insert(editor.document.uri, line.range.end, `<!-- ${updatedText.trim()} -->\n`);
+                vscode.workspace.applyEdit(edit);
+                vscode.window.showInformationMessage("Added alt attribute to img tag as a comment in the line above.");
+            } else {
+                vscode.window.showInformationMessage("Selected text contains img tag with alt attribute.");
+            }
+        } else {
+            vscode.window.showInformationMessage("Selected text does not contain img tag.");
+        }
 	})
-	context.subscriptions.push(disposable);
+
 		//const result = await axios('https://api.agify.io/?name=John')
 		//console.log(result);
 	let readPageData = vscode.commands.registerCommand("devseo.readPage",async function(){
@@ -205,7 +228,7 @@ async function activate(context) {
 		}
 	});
 
-	
+	context.subscriptions.push(disposable);
 	context.subscriptions.push(readPageData);
 	context.subscriptions.push(readAllPagesData);
 }
