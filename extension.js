@@ -7,6 +7,11 @@ let { titleFont, baseFont, lightFont } = require('./core/fonts.js');
 let pageChecks = require('./core/pageChecks.js');
 const vscode = require('vscode');
 
+// In someOtherFile.js
+
+const CodeSelectionStrategy = require('./core/CodeSelectionStrategy.js');
+const StatusBar = require('./core/StatusBar.js');
+
 
 
 // This method is called when your extension is activated
@@ -17,53 +22,16 @@ const vscode = require('vscode');
  */
 async function activate(context) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "devseo" is now active!');
+	StatusBar.activate();
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('devseo.devseo', function () {
-		// Display a message box to the user
-		vscode.window.showInformationMessage('SEO optimization started!');
-		const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right,100);
-		// gösterilecek olan text
-		statusBarItem.text="$(devseo-status-bar-icon) DEVSEO";
-		// iconun üstine geldiğinde çıkan kısa açıklama
-		statusBarItem.tooltip = "Click to run SEO optimization"
-		// iconun statusbarda gösterilmesi
-		statusBarItem.show();
-		// çalışacak olan komut
-		statusBarItem.command= 'devseo.status';
-	});
-	context.subscriptions.push(disposable);
-	disposable = vscode.commands.registerCommand('devseo.status',async ()=>{
+	let statusDisposable = vscode.commands.registerCommand('devseo.status',async ()=>{
 		let editor = vscode.window.activeTextEditor;
         if (!editor) {
             vscode.window.showInformationMessage("No active editor found.");
             return;
         }
-
-		let selection = editor.selection;
-        let selectedText = editor.document.getText(selection);
-
-		if (selectedText.includes("<img")) {
-            if (!selectedText.includes("alt")) {
-                // Eğer alt tagi yoksa, alt attribute'yi ekleyelim.
-                let updatedText = selectedText.replace("/>", "alt=\"\"/	>");
-                let position = selection.start.translate(-1, 0); // Seçimin başlangıcının üst satırına git
-                let line = editor.document.lineAt(position);
-                let edit = new vscode.WorkspaceEdit();
-                edit.insert(editor.document.uri, line.range.end, `<!-- ${updatedText.trim()} -->\n`);
-                vscode.workspace.applyEdit(edit);
-                vscode.window.showInformationMessage("Added alt attribute to img tag as a comment in the line above.");
-            } else {
-                vscode.window.showInformationMessage("Selected text contains img tag with alt attribute.");
-            }
-        } else {
-            vscode.window.showInformationMessage("Selected text does not contain img tag.");
-        }
+		
+		CodeSelectionStrategy.checkSelection({ editor });
 	})
 
 		//const result = await axios('https://api.agify.io/?name=John')
@@ -228,7 +196,7 @@ async function activate(context) {
 		}
 	});
 
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(statusDisposable);
 	context.subscriptions.push(readPageData);
 	context.subscriptions.push(readAllPagesData);
 }
