@@ -9,7 +9,9 @@ https://docs.google.com/document/d/1f79wWRahMtj3Wekr06vRVpEh7Cng677Cb-J__uTmHXg/
 
 
 
-
 ****
-
-4. Ruleslar arttırılacak
+1- Ruleslar eklenecek
+2- Çoklu Seçim
+3- HTML Olarak Exports
+    - Dosyaya Custom İsim Vermek
+    - 
