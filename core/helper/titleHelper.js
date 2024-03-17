@@ -1,4 +1,4 @@
-let { titleFont, baseFont, lightFont } = require('./../fonts.js');
+let { titleFont, baseFont, lightFont } = require('../fonts.js');
 
 
 const printSubtitle = ( message , pdfDoc ) => {
