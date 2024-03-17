@@ -8,6 +8,7 @@ const Checker = require('./core/checker.js');
 async function activate(context) {
 	StatusBar.activate();
 	context.subscriptions.push(Checker.singleHTMLElementChecker);
+	context.subscriptions.push(Checker.multiHtmlElementChecker);
 	context.subscriptions.push(Checker.singlePageSEOChecker);
 	context.subscriptions.push(Checker.allPagesSEOChecker);
 }

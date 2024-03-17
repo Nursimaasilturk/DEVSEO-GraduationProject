@@ -30,6 +30,10 @@
       {
         "command": "devseo.status",
         "title": "Status bar message"
+      },
+      {
+        "command": "devseo.selectCodeBlock",
+        "title": "Multiple Code Block"
       }
     ], 
     "icons": {

@@ -19,8 +19,40 @@ let singleHTMLElementChecker = vscode.commands.registerCommand('devseo.status',a
 });
 //End::SingleHtmlElementChecker
 
+//Begin::MultiHtmlElementChecker
+let multiHtmlElementChecker = vscode.commands.registerCommand("devseo.selectCodeBlock", async function(){
+	
+    let editor = vscode.window.activeTextEditor;
+    if(!editor){
+        vscode.window.showInformationMessage("No active editor found.");
+        return;
+    }
 
-//Begin::singlePageSEOChecker || Aktif Olan Sayfada SEO Taraması - Rapor PDF halinde export edilir
+    let { selection } = editor;
+    let selectedText = editor.document.getText(selection);
+
+    // Eksik SEO özniteliklerini ekleyen fonksiyon
+	function addMissingSEOAttributes(htmlString) {
+        // 'src' özniteliğinin boş olduğu img etiketleri için 'alt' özniteliğini ekleme
+        htmlString = htmlString.replace(/<img([^>]*)src=""([^>]*)>/g, '<img$1src="" alt=""$2>');
+        // 'href' özniteliğinin boş olduğu a etiketleri için 'href' özniteliğini '#' yapma
+        htmlString = htmlString.replace(/<a([^>]*)>([^<]*)<\/a>/g, '<a$1 href="#">$2</a>');
+        return htmlString;
+    }
+
+
+    // Eksik SEO özniteliklerini ekleyerek yorum satırı içine al
+    let commentedText = `<!--\n${addMissingSEOAttributes(selectedText)}\n-->`;
+
+    // Seçili metni belgeye ekle
+    editor.edit(editBuilder => {
+        editBuilder.insert(selection.start, commentedText);
+    });
+
+});
+//End::MultiHtmlElementChecker
+
+//Begin::SinglePageSEOChecker || Aktif Olan Sayfada SEO Taraması - Rapor PDF halinde export edilir
 let singlePageSEOChecker = vscode.commands.registerCommand("devseo.readPage",async function(){
 		
 		let pageIssuesList = "PAGE_CONTENT\n";
@@ -132,9 +164,9 @@ let singlePageSEOChecker = vscode.commands.registerCommand("devseo.readPage",asy
         });
 
 });
-//End::singlePageSEOChecker
+//End::SinglePageSEOChecker
 
-//Begin::allPagesSEOChecker Çoklu Sayfada SEO Taraması - Her sayfa için rapor pdf halinde export edilir.
+//Begin::AllPagesSEOChecker Çoklu Sayfada SEO Taraması - Her sayfa için rapor pdf halinde export edilir.
 let allPagesSEOChecker = vscode.commands.registerCommand("devseo.readAllPages", async function(){
     let pageIssuesList = "PAGE_CONTENT\n";
 
@@ -181,10 +213,12 @@ let allPagesSEOChecker = vscode.commands.registerCommand("devseo.readAllPages", 
         vscode.window.showErrorMessage('Error reading HTML files.');
     }
 });
-//End::allPagesSEOChecker
+//End::AllPagesSEOChecker
+
 
 module.exports = { 
     singleHTMLElementChecker,
+	multiHtmlElementChecker,
     singlePageSEOChecker,
     allPagesSEOChecker
 };
