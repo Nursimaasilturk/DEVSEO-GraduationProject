@@ -1,0 +1,86 @@
+.footer{
+	&__desc{
+		width: 25%;
+		&--logo{
+			img{
+				width: 40px;
+			}
+			p{
+				@include font(16px,bold,$dark-color);
+				margin-left: 15px;
+			}
+		}
+		&--text{
+			@include font(14px,300,$light--dark-color);
+
+		}
+		&--social-media{
+			gap: 30px;
+			&-item a{
+				color: #3C4563;
+			}
+		}
+	}
+	&__links{
+		width: 50%;
+		gap: 60px;
+		.link-header{
+			@include font(18px,600,$dark-color);
+			margin-bottom: 1rem;
+		}
+		.link-group--item a, .link-group--item p{
+			@include font(14px,300,#888B97);
+			text-decoration: none;
+		}
+		@include breakpoint(large){
+			gap: 150px;
+		}
+	}
+	@include breakpoint(tablet){
+		&__desc,&__links{
+			width: 100%;
+		}
+		&__links{
+			gap: 90px;
+			margin-top: 50px;
+		}
+		&__desc{
+			&--logo{
+				margin-right: 50px;
+			}	
+		}
+	}
+	@include breakpoint(mobile){
+		&__desc{
+			&--text{
+				font-size: 13px;
+				text-align: justify;
+			}
+		}
+		&__links{
+			width: 100%;
+			gap: 0;
+			&-group{
+				width: 50%;
+				&:last-child{
+					width: 100%;
+				}
+				.link-header{
+					font-size: 15px;
+				}
+				.link-group--item a,.link-group--item p{
+					font-size: 13px;
+				}
+			}
+		}
+	}
+}
+footer{
+	padding:70px 50px;
+	@include breakpoint(tablet){
+		padding: 50px 20px;
+	}
+	@include breakpoint(mobile){
+		padding: 0px 15px 10px 15px;
+	}
+}

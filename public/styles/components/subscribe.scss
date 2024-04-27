@@ -1,0 +1,101 @@
+
+.subscribe{
+	@include size(100%,310px);
+	border-radius: 32px;
+	background: rgb(250,251,255);
+	background: radial-gradient(circle, rgba(250,251,255,1) 0%, rgba(134,171,232,1) 100%);
+	&__text{
+		@include font(32px,$color:$dark-color);
+	}
+	&__form{
+		@include size(45%,60px);
+		background-color:#fff;
+		border: none;
+		button{
+			width: 20% !important;
+		}
+	}
+	#error-text{
+		width: 45%;
+		padding:5px 20px;
+		@include font(12px,300,rgb(197, 58, 58));
+	}
+	.house{
+		position: absolute;
+		@include size(60px,60px);
+		border-radius: 20px;
+		border: 2px solid #fff;
+		&.h-1{
+			top:20%;
+			left:15%;
+		}
+		&.h-2{
+			top:60%;
+			left:5%;
+		}
+		&.h-3{
+			right: 10%;
+			top: 25%;
+		}
+		&.h-4{
+			right: 18%;
+			top: 70%;
+		}
+		&.h-5{
+			@include size(40px,40px);
+			right: 7%;
+			top: 72%;
+		}
+		&.h-6{
+			@include size(40px,40px);
+			left: 7%;
+			top: 23%;
+		}
+	}
+	@include breakpoint(tablet){
+		border-radius: 15px;
+		&__text{
+			font-size: 28px;
+		}
+		.house{
+			@include size(40px,40px);
+			border-radius: 10px;
+			border: 1px solid #fff;
+			&.h-4{
+				display: none
+			}
+			&.h-5{
+				@include size(30px,30px);
+			}
+			&.h-6{
+				@include size(30px,30px);
+			}
+		}
+		&__form{
+			@include size(60%,50px);
+		}
+	}
+	@include breakpoint(mobile){
+		height: 200px;
+		border-radius:5px;
+		&__text{
+			font-size: 20px;
+		}
+		.house{
+			display: none;
+		}
+		&__form{
+			input{
+				font-size: 12px !important;
+			}
+			@include size(90%,35px);
+			button{
+				width: 25% !important;
+			}
+		}
+		#error-text{
+			width: 100%;
+			margin-left: 10px;
+		}
+	}
+}

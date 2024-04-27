@@ -1,0 +1,33 @@
+.custom-pad{
+	padding:20px 50px;
+	@include breakpoint(tablet){
+		padding:20px;
+	}
+	@include breakpoint(mobile){
+		padding:15px;
+	}
+}
+.custom-pad-all{
+	padding: 50px;
+	@include breakpoint(tablet){
+		padding:20px;
+	}
+	@include breakpoint(mobile){
+		padding:15px;
+	}
+}
+.pad-left{
+	padding-left: 50px;
+	@include breakpoint(tablet){
+		padding-left:10px;
+	}
+}
+.mar-pad-0{
+	margin: 0;
+	padding: 0;
+}
+.flexing-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

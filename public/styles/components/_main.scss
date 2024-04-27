@@ -1,0 +1,97 @@
+.yellow-text{
+	span{
+		display: block;
+		@include size(40px,1px);
+		background-color:$yellow-color;
+		margin-right: 0.5rem;
+	}
+	p{
+		@include font(14px,400,$yellow-color);
+	}
+	@include breakpoint(mobile){
+		p{
+			font-size: 12px;
+		}
+	}
+}
+.alert-title{
+	@include font(25px,600,$secondary-color);
+}
+.alert-confirm-btn{
+	@include font(14px,600,$primary-color);
+	background-color: $light--primary-color;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 24px;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+.general-form{
+	border-radius: 32px;
+	border: 1px solid #E0E3EB;
+	padding: 3px 3px 3px 20px;
+	input{
+		@include size(70%,100%);
+		border: none;
+		color:$dark-color;
+		caret-color: $primary-color;
+		&:focus,&:focus-visible{
+			outline: none;
+		}
+		&::placeholder{
+			@include font(14px,400,$light--dark-color);
+		}
+	}
+	button{
+		position: relative;
+		@include size(20%,100%);
+		@include font(14px,$color:$white-color);
+		@include hover-btn($secondary-color,#fff,2px,true);
+		img{
+			position: absolute;
+			right: 10%;
+			&.light{
+				opacity: 1;
+			}
+			&.solid{
+				opacity: 0;
+			}
+		}
+		border-radius: 30px;
+	}
+
+	@include breakpoint(tablet){
+		img{
+			margin-right: 10px;
+		}
+	}
+	@include breakpoint(mobile){
+		padding: 2px 2px 2px 20px;
+		input{
+			&::placeholder{
+				font-size: 12px;
+			}
+		}
+		button{
+			font-size: 10px;
+			width: 25%;
+			img{
+				right: -5px;
+			}
+		}
+	}
+}
+.partnership-mobile{
+	padding: 20px 15px 30px 15px;
+	h4{
+		@include font(25px,600,$dark-color);
+	}
+	@include breakpoint(mobile){
+		padding: 20px 15px 0px 15px;
+		h4{
+			font-size: 20px;
+		}
+		ul li{
+			min-width: 30%;
+		}
+	}
+}

@@ -1,0 +1,82 @@
+@mixin stroke-text($stroke){
+  color: transparent;
+  -webkit-text-stroke: 1px $stroke;
+  text-stroke: 1px $stroke;
+}
+@mixin size($width,$height){
+  width:$width;
+  height:$height;
+}
+@mixin font($font-size:15px,$font-weight:400,$color:black){
+	font-size: $font-size;
+	font-weight: $font-weight;
+	color:$color;
+}
+@mixin hover-btn($bgcolor,$color,$border,$icon:false){
+  border:$border solid $bgcolor ;
+  background-color: $bgcolor;
+  transition: 0.3s ease-in;
+  img{
+    transition: 0.3s ease-in opacity;
+  }
+  &:hover{
+    background-color: $color;
+    color: $bgcolor;
+    @if $icon == true{
+      img{
+        &.light{
+          opacity: 0;
+        }
+        &.solid{
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+@mixin breakpoint($point) {
+  @if $point == mobile {
+    @media (max-width: 575px) { @content; }
+  }
+  @else if $point == tablet {
+    @media (max-width: 991px) { @content; }
+  }
+  @else if $point == large {
+    @media (min-width: 1401px) { @content; }
+  }
+}
+@mixin gost-animation($color){
+  @keyframes loading {
+    to {
+      background-position-x: -20%;
+    }
+  }
+  background: linear-gradient(
+				100deg,
+				rgba(255, 255, 255, 0) 40%,
+				rgba(255, 255, 255, .5) 50%,
+				rgba(255, 255, 255, 0) 60%
+			  ) $color;
+			  background-size: 200% 100%;
+			  background-position-x: 180%;
+			  animation: 1.2s loading ease-in-out infinite;
+}
+@mixin gost-title($width,$color:$skeloton-title){
+  display: block;
+  background-color: $color;
+  border-radius: 5px;
+  @include size($width,20px);
+  @include gost-animation($color);
+}
+@mixin gost-box($width,$height,$color:$skeloton-title){
+  display: block;
+  border-radius: 5px;
+  background-color: $color;
+  @include size($width,$height);
+  @include gost-animation($color);
+
+}
+@mixin gost-circle($width,$height,$color:$skeloton-box){
+  @include gost-box($width,$height,$color);
+  border-radius:50%;
+}

@@ -1,0 +1,249 @@
+.gost-hero{
+	&-left{
+		padding-left: 50px;
+		width: 45%;
+		gap: 30px;
+		.title{
+			@include gost-title(80%);
+		}
+		.box{
+			@include gost-box(80%,70px);
+		}
+	}
+	&-right{
+		padding: 50px;
+		@include gost-box(55%,100vh);
+		border-bottom-left-radius:70px;
+		&--bottom{
+			gap: 30px;
+			.box{
+				@include gost-box(200px,70px,$skeloton-box);
+			}
+		}
+	}
+}
+.gost-recom{
+	padding:50px;
+	gap: 30px;
+	.title{
+		@include gost-title(25%);
+	}
+	.title-2{
+		@include gost-title(65%);
+	}
+	.gost-card{
+		margin-top: 50px;
+		.box{
+			@include gost-box(300px,350px);
+		}
+		.title{
+			@include gost-title(70%);
+		}
+		.box-2{
+			padding:5px 10px; 
+			@include gost-box(300px,60px);
+			.circle{
+				@include gost-circle(40px,40px);
+			}
+			.title-3{
+				@include gost-title(60%,$skeloton-box);
+			}
+		}
+	}
+	
+}
+.gost-sell{
+	padding: 50px;
+	&-left{
+		width: 50%;
+		.title{
+			@include gost-title(30%);
+		}
+		.title-2{
+			@include gost-title(70%);
+		}
+		.box-2{
+			@include gost-box(200px,100px,$skeloton-box);
+		}
+		.circle{
+			margin-right: 100px;
+			@include gost-circle(40px,40px);
+		}
+	}
+	&-right{
+		width: 50%;
+		.box{
+			@include gost-box(100%,500px);
+		}
+	}
+}
+.gost-review{
+	padding: 50px;
+	.title{
+		@include gost-title(40%);
+	}
+	.gost-slide{
+		width: 30%;
+		.box{
+			@include gost-box(100%,300px);
+		}
+		.box-2{
+			z-index: 2;
+			margin-top: -70px;
+			margin-left: 30px;
+			padding: 15px;
+			@include gost-box(85%,150px,$skeloton-box);
+			.title-2{
+				@include gost-title(100%);
+			}
+			.circle{
+				@include gost-circle(30px,30px,$skeloton-title);
+			}
+			.title-3{
+				@include gost-title(70%);
+			}
+		}
+	}
+}
+.gost-blog{
+	padding: 50px;
+	.title{
+		@include gost-title(40%);
+	}
+	&-left{
+		width: 48%;
+		.box{
+			@include gost-box(120px,100px,$skeloton-box);
+			margin-right: 20px
+		}
+		.title-2{
+			@include gost-title(80%);
+		}
+		.info{
+			width: 80%;
+		}
+	}
+	&-right{
+		width: 48%;
+		.box-2{
+			@include gost-box(100%,400px,$skeloton-box);
+		}
+		.title-3{
+			@include gost-title(100%);
+		}
+	}
+}
+.gost-subs{
+	.box{
+		@include gost-box(93%,300px);
+	}
+	.title{
+		@include gost-title(40%,$skeloton-box)
+	}
+	.box-2{
+		@include gost-box(50%,70px,$skeloton-box);
+	}
+}
+@include breakpoint(tablet){
+	.gost-hero{
+		position: relative;
+		z-index: 0;
+		&-right{
+			@include size(100%,700px);
+			border-radius: 0;
+		}
+		&-left{
+			width: 100%;
+			position: absolute;
+			top: 20%;
+			left: 3%;
+			.title,.box{
+				width: 90%;
+				background-color: $skeloton-box;
+			}
+
+		}
+	}
+	.gost-recom,.gost-sell,.gost-review,.gost-blog{
+		padding: 20px;
+	}
+	.gost-recom{
+		gap:0px;
+		.title{
+			@include gost-title(45%);
+		}
+		.title-2{
+			@include gost-title(75%);
+		}
+		.gost-card:nth-child(2n){
+			display: none;
+		}
+	}
+	.gost-sell{
+		&-right{
+			width: 100%;
+		}
+		&-left{
+			width: 100%;
+			margin-bottom: 30px;
+			.box-2{
+				width: 300px;
+			}
+		}
+	}
+}
+@include breakpoint(mobile){
+	.gost-hero{
+		&-right{
+			height: 500px;
+			.box{
+				display: none;
+			}
+		}
+		&-left{
+			left: 0px;
+			
+		}
+	}
+	.gost-recom,.gost-sell,.gost-review,.gost-blog{
+		padding: 10px;
+	}
+	.gost-recom{
+		.gost-card{
+			.box,.box-2{
+				width: 380px;
+			}
+			&:not(:first-child){
+				display: none;
+			}
+		}
+	}
+	.gost-sell{
+		&-left{
+			margin-bottom: 20px;
+			.box-2{
+				width: 150px;
+			}
+		}
+		&-right{
+			.box{
+				height: 400px;
+			}
+		}
+	}
+	.gost-slide{
+		width: 80% !important;
+		&:not(:first-child){
+			display: none;
+		}
+	}
+	.gost-blog{
+		&-right,&-left{
+			width: 100%;
+		}
+		&-right{
+			margin-bottom: 20px;
+		}
+	}
+	
+}

@@ -1,0 +1,30 @@
+// Base
+@import 'base/mixins';
+@import 'base/variables';
+@import 'base/functions';
+// Layouts
+@import 'layouts/footer';
+@import 'layouts/header';
+// Components
+@import 'components/main.scss';
+@import 'components/hero.scss';
+@import 'components/blog.scss';
+@import 'components/recommendation.scss';
+@import 'components/review.scss';
+@import 'components/sell.scss';
+@import 'components/subscribe.scss';
+@import 'components/skeloton.scss';
+
+body{
+	font-family: 'Lexend', sans-serif;
+}
+p,ul{
+	margin: 0;
+	padding: 0;
+}
+ul{
+	list-style: none;
+}
+main{
+	display: none;
+}

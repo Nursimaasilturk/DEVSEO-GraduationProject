@@ -1,0 +1,118 @@
+header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 14;
+	width: 100%;
+	transition: all 0.3s ease-in-out;
+	&.active{
+		background-color: #fff;
+		-webkit-box-shadow:rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    	-moz-box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+		box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+		.header__navbar--categories-item{
+			border: 1px solid $secondary-color;
+			background-color: transparent;
+			transition: 0.3s ease-in;
+			a{
+				color:$secondary-color;
+				font-weight: 500;
+			}
+			&:hover{
+				background-color: $secondary-color;
+				a{
+					color: #fff;
+				}
+			}
+		}
+	}
+}
+.header{
+	&__logo{
+		img{
+			width: 30px;
+		}
+		p{
+			@include font(16px,bold,$dark-color);
+			margin-left: 15px;
+		}
+	}
+	&__navbar{
+		gap: 100px;
+		&--categories{
+			gap: 50px;
+			&-item{
+				cursor: pointer;
+				border: 1px solid $white-color ;
+				background-color: rgb(240, 243, 253,0.1);
+				padding:5px 18px;
+				border-radius: 24px;
+				a{
+					text-decoration: none;
+					@include font(14px,300,$white-color);
+				}
+			}
+		}
+		&--sign-up-btn{
+			@include font(14px,600,$primary-color);
+			background-color: $light--primary-color;
+			padding: 12px 24px;
+			border: none;
+			border-radius: 24px;
+			
+		}
+	}
+	&__mobile-menu{
+		#mobile-menu-open-btn{
+			padding-right: 0;
+			border: none;
+			background-color: transparent;
+			cursor: pointer;
+		}
+		&-list{
+			position: fixed;
+			width: 350px;
+			height: 100vh;
+			top: 0;
+			right: -350px;
+			background-color:#fff;
+			z-index: 15;
+			padding: 70px 50px;
+			transition: 0.3s ease-in-out right;
+			-webkit-box-shadow:rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    		-moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+			box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+			&.active{
+				right: 0;
+			}
+			ul{
+				padding: 0;
+				gap: 20px;
+				a{
+					text-decoration: none;
+					@include font(18px,500,$dark-color);
+				}
+			}
+			#mobile-menu-close-btn{
+				border: none;
+				background-color: transparent;
+				cursor: pointer;
+				position: absolute;
+				top: 2%;
+				right: 6%;
+			}
+			@include breakpoint(mobile){
+				width: 300px;
+				right: -300px;
+				padding: 50px 30px;
+				ul{
+					gap: 10px;
+					a{
+						font-size: 14px;
+					}
+				}
+			}
+			
+		}
+	}
+}

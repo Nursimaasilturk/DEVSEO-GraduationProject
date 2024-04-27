@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hounter</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+	<link rel="stylesheet" href="dist/css/style.css">
+</head> 
+<body>
+	<!-- Navbar -->
+	<header id="header" class="d-flex align-items-center justify-content-between custom-pad">
+		<div class="header__logo d-flex align-items-center">
+			<img src="assets/images/svg/logo.svg" />
+			<p class="header__logo--text">Hounter</p>
+		</div>
+		<div class="header__mobile-menu  d-flex d-lg-none">
+			<button id="mobile-menu-open-btn">
+				<img src="assets/images/svg/hamburger-menu.svg" alt="mobile menu" >
+			</button>
+			<div class="header__mobile-menu-list">
+				<button id="mobile-menu-close-btn">
+					<img src="assets/images/svg/close.svg" alt="" >
+				</button>
+				<ul class="d-flex flex-column">
+					<li class="header__mobile-menu-list-item" ><a href="#">About</a></li>
+					<li class="header__mobile-menu-list-item" ><a href="#">Article</a></li>
+					<li class="header__mobile-menu-list-item" ><a href="#">Property</a></li>
+				</ul>
+			</div>
+		</div>
+		<nav class="header__navbar d-flex align-items-center d-none d-lg-flex">
+			<ul class="header__navbar--categories d-flex mar-pad-0">
+				<li class="header__navbar--categories-item">
+					<a href="#">About Us</a>
+				</li>
+				<li class="header__navbar--categories-item">
+					<a href="#">Article</a>
+				</li>
+				<li class="header__navbar--categories-item">
+					<a href="#">Property</a>
+				</li>
+			</ul>
+			<button class="header__navbar--sign-up-btn">Sign Up!</button>
+		</nav>
+	</header>
+	<!-- Navbar End-->
+	<main id="main-content">
+		<!--Hero Section-->
+		<section class="hero-section d-flex w-100 align-items-stretch">
+			<div class="hero-section__desc d-flex flex-column align-items-start justify-content-center custom-pad">
+				<h2 class="hero-section__desc--main-header mb-4"> Find The Place To Live <span class="stroke-text">Your Dreams</span> Easily Here</h2>
+				<p class="hero-section__desc--text mb-4">
+					Everything you need about finding your place to live will be here, where it will be easier for you
+				</p>
+				<form action="" class="hero-section__desc--search-form general-form d-flex align-items-center justify-content-between mb-5">
+					<img src="assets/images/svg/location-icon.svg" alt="search icon">
+					<input type="text" name="" id="search" placeholder="Search for the location you want!">
+					<button type="submit" class="d-flex align-items-center justify-content-start px-2">Search <img class="light" src="assets/images/svg/right-arrow-icon.svg" alt="right icon"><img class="solid" src="assets/images/svg/right-arrow-icon-solid.svg" alt="right icon"></button>
+				</form>
+				<div class="hero-section__desc--our-part d-none d-lg-block">
+					<h4>Our Partnership</h4>
+					<ul class="d-flex our-part-list">
+						<li><img src="assets/images/svg/traveloka.svg" alt="traveloka"></li>
+						<li><img src="assets/images/svg/tiket.svg" alt="tiket.com"></li>
+						<li><img src="assets/images/svg/airbnb.svg" alt="airbnb"></li>
+						<li><img src="assets/images/svg/tripadvisor.svg" alt="tripadvisor"></li>
+					</ul>
+				</div>
+			</div>
+			<div class="hero-section__img d-flex align-items-end">
+				<div class="hero-section__img-elements d-flex">
+					<div class="swiper heroSwiper">
+						<div class="swiper-wrapper">
+						  <div class="swiper-slide">
+							<div class="item d-flex">
+								<div class="item-img-group d-flex">
+									<div class="item-img first">
+										<img src="assets/images/webp/hero-section-slider.webp" alt="house" class="w-100 h-100">
+									</div>
+									<div class="item-img second">
+										<img src="assets/images/webp/hero-section-slider.webp" alt="house" class="w-100 h-100">
+									</div>
+									<div class="item-img third">
+										<img src="assets/images/webp/hero-section-slider.webp" alt="house" class="w-100 h-100">
+									</div>
+								</div>
+								<div class="item-text">
+									<p class="item-text--top">1K+ People</p>
+									<p class="item-text--bottom">Successfully Getting Home</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide">
+							<div class="item d-flex">
+								<div class="item-img">
+									<img src="assets/images/webp/hero-section-slider.webp" alt="house" class="w-100 h-100">
+								</div>
+								<div class="item-text">
+									<p class="item-text--top">56 Houses</p>
+									<p class="item-text--bottom"> Sold Monthly</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide">
+							<div class="item d-flex">
+								<div class="item-img">
+									<img src="assets/images/webp/hero-section-slider.webp" alt="house" class="w-100 h-100">
+								</div>
+								<div class="item-text">
+									<p class="item-text--top">4K+</p>
+									<p class="item-text--bottom">People Looking for New Homes</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide">
+							<div class="item d-flex">
+								<div class="item-img">
+									<img src="assets/images/webp/hero-section-slider.webp" alt="house" class="w-100 h-100">
+								</div>
+								<div class="item-text">
+									<p class="item-text--top">4K+</p>
+									<p class="item-text--bottom">People Looking for New Homes</p>
+								</div>
+							</div>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--Hero Section End-->
+		<section class="d-block d-lg-none partnership-mobile">
+			<h4 class="text-center">Our Partnership</h4>
+				<ul class="d-flex  align-items-center justify-content-evenly flex-wrap">
+					<li><img src="assets/images/svg/traveloka.svg" alt="traveloka"></li>
+					<li><img src="assets/images/svg/tiket.svg" alt="tiket.com"></li>
+					<li><img src="assets/images/svg/airbnb.svg" alt="airbnb"></li>
+					<li><img src="assets/images/svg/tripadvisor.svg" alt="tripadvisor"></li>
+				</ul>
+		</section>
+		<!--Recommendation Section-->
+		<section class="recom position-relative">
+			<div class="recom__top-text d-flex flex-column flex-sm-row align-items-center yellow-text">
+				<span class="my-2"></span>
+				<p>Our Recommendation</p>
+			</div>
+			<div class="d-flex flex-column pad-left py-3">
+				<div class="d-flex flex-lg-row flex-column mb-4">
+					<div class="recom__header">Featured Houses</div>
+					<div class="recom__filters d-flex">
+						<button class="recom__filters-btn active" data-filter="all">All</button>
+						<button class="recom__filters-btn" data-filter="house"><i class="fa-solid fa-house"></i>House</button>
+						<button class="recom__filters-btn" data-filter="villa"><i class="fa-solid fa-vihara"></i>Villa</button>
+						<button class="recom__filters-btn" data-filter="apartment"><i class="fa-regular fa-building"></i>Apartment</button>
+					</div>
+				</div>
+				<div class="recom__slider">
+					<div class="swiper recommendationSwiper">
+						<div class="swiper-wrapper">
+						  <div class="swiper-slide recom-item apartment">
+							<img src="assets/images/webp/featured-1.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide recom-item villa">
+							<img src="assets/images/webp/featured-2.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide recom-item house">
+							<img src="assets/images/webp/featured-3.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide recom-item apartment">
+							<img src="assets/images/webp/featured-1.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide recom-item villa">
+							<img src="assets/images/webp/featured-2.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide recom-item house">
+							<img src="assets/images/webp/featured-3.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide recom-item apartment">
+							<img src="assets/images/webp/featured-1.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide recom-item villa">
+							<img src="assets/images/webp/featured-2.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide recom-item house">
+							<img src="assets/images/webp/featured-3.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide recom-item apartment">
+							<img src="assets/images/webp/featured-1.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide recom-item villa">
+							<img src="assets/images/webp/featured-2.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						  <div class="swiper-slide recom-item house">
+							<img src="assets/images/webp/featured-3.webp" alt="" class="recom-item--img">
+							<p class="recom-item--header mt-2">Roselands House</p>
+							<p class="recom-item--price">$ 35.000.000</p>
+							<div class="recom-item--user d-flex mt-3">
+								<img src="assets/images/webp/user.webp" alt="">
+								<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="address">Manchester, Kentucky</p>
+								</div>
+							</div>
+						  </div>
+						</div>
+					  </div>
+				</div>
+			</div>
+			<div class="recom-slider-custom-navigation position-absolute">
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+		</section>
+		<!--Recommendation Section End-->
+		<!--Sell Section-->
+		<section class="sell custom-pad-all d-flex flex-column flex-lg-row align-items-start justify-content-between">
+			<div class="sell__desc">
+				<div class="sell__desc--top-text yellow-text d-flex flex-column flex-sm-row align-items-center mb-3">
+					<span class="my-2"></span>
+					<p>Ready To Sell</p>
+				</div>
+				<div class="d-flex align-items-start flex-column px-lg-5 px-0">
+					<h2 class="sell__desc--header text-center mb-4">Let’s Tour And See Our House!</h2>
+					<p class="sell__desc--info mb-3">Houses recommended by our partners that have been curated to become the home of your dreams!</p>
+					<div class="d-flex flex-lg-column flex-sm-row  flex-column justify-content-between w-100 mt-3">
+						<div class="d-flex flex-column">
+					     <p class="sell__desc--detail-title">House Detail</p>
+					    <div class="sell__desc--detail-box d-flex flex-wrap">
+						<div class="sell__desc--detail-box-item"><img src="assets/images/svg/bedroom-icon.svg" alt=""> 4 Bedrooms</div>
+						<div class="sell__desc--detail-box-item"><img src="assets/images/svg/bathroom.svg" alt=""> 2 Bathrooms</div>
+						<div class="sell__desc--detail-box-item"><img src="assets/images/svg/carport.svg" alt=""> 1 Carport</div>
+						<div class="sell__desc--detail-box-item"><img src="assets/images/svg/stairs.svg" alt="">2 Floors</div>
+					     </div>
+					    <hr class="sell__hr">
+						</div>
+						<div class="sell__desc--user d-flex flex-row flex-sm-column flex-lg-row align-items-center justify-content-lg-between justify-content-sm-start justify-content-between">
+						<div class="d-flex">
+							<img src="assets/images/webp/user.webp" alt="" class="user-img">
+							<div class="d-flex flex-column">
+									<p class="name">Dianne Russell</p>
+									<p class="title">Manager Director</p>
+							</div>
+						</div>
+						<button class="d-flex align-items-center justify-content-end"> <img class="light" src="assets/images/svg/phone-icon.svg" alt="phone"><img class="solid" src="assets/images/svg/phone-icon-dark.svg" alt="phone"><a href="tel:555-555-5555">Contact Now</a></button>
+						</div>
+				    </div>
+				</div>
+			</div>
+			<div class="sell__product-img d-flex align-items-end flex-column">
+				<a href="assets/images/sell-video.mp4" class="sell__product-img-main glightbox">
+					<div class="main-frame flexing-center">
+						<button><i class="fa-solid fa-play"></i></button>
+					</div>
+						<img src="assets/images/webp/sell-img.webp" alt="">
+				</a>
+				
+				<div class="sell__product-slider">
+					<div class="swiper productSwiper">
+						<div class="swiper-wrapper">
+						  <a href="assets/images/webp/sell-slider3.webp" class="swiper-slide product-item glightbox">
+							<img src="assets/images/webp/sell-slider3.webp" alt="">
+						  </a>
+						  <a href="assets/images/webp/sell-slider2.webp" class="swiper-slide product-item glightbox">
+							<img src="assets/images/webp/sell-slider2.webp" alt="">
+						  </a>
+						  <a href="assets/images/webp/sell-slider1.webp" class="swiper-slide product-item glightbox">
+							<img src="assets/images/webp/sell-slider1.webp" alt="">
+						  </a>
+						  <a href="assets/images/webp/sell-slider2.webp" class="swiper-slide product-item">
+							<img src="assets/images/webp/sell-slider2.webp" alt="">
+						  </a>
+						</div>
+					  </div>
+				</div>
+			</div>
+		</section>
+		<!--Sell Section End-->
+		<!--Review Section-->
+		<section class="review">
+			<div class="review__top-text yellow-text flexing-center flex-column mb-3">
+				<span class="my-2"></span>
+				<p>See Our Review</p>
+			</div>
+			<h2 class="review__header text-center mb-4">What Our User Say About Us</h2>
+			<div class="review__slider mb-4">
+				<div class="swiper reviewSwiper">
+					<div class="swiper-wrapper">
+					  <div class="swiper-slide item flexing-center flex-column">
+						<img src="assets/images/webp/review-1.webp" alt="" class="item-img">
+						<div class="item-review">
+							<h5 class="item-review--header mb-1 mb-sm-3">Best! I got the house I wanted through Hounter</h5>
+							<p class="item-review--text mb-1 mb-sm-3">Through this website I can get a house with the type and specifications I want very easily, without a complicated process to be able to find information on the house we want.</p>
+							<div class="d-flex mb-1 mb-sm-3 align-items-center justify-content-between">
+								<div class="item-review--user d-flex">
+									<img src="assets/images/webp/user.webp" alt="">
+									<div class="d-flex flex-column">
+										<p class="name">Dianne Russell</p>
+										<p class="title">Manager Director</p>
+									</div>
+								</div>
+								<div class="item-review--rate flexing-center">
+									<img src="assets/images/svg/star-icon.svg" alt="star" class="mx-2">4.6</div>
+							</div>
+						</div>
+					  </div>
+					  <div class="swiper-slide item flexing-center flex-column">
+						<img src="assets/images/webp/review-2.webp" alt="" class="item-img">
+						<div class="item-review">
+							<h5 class="item-review--header mb-1 mb-sm-3">Best! I got the house I wanted through Hounter</h5>
+							<p class="item-review--text mb-1 mb-sm-3">Through this website I can get a house with the type and specifications I want very easily, without a complicated process to be able to find information on the house we want.</p>
+							<div class="d-flex mb-1 mb-sm-3 align-items-center justify-content-between">
+								<div class="item-review--user d-flex">
+									<img src="assets/images/webp/user.webp" alt="">
+									<div class="d-flex flex-column">
+										<p class="name">Dianne Russell</p>
+										<p class="title">Manager Director</p>
+									</div>
+								</div>
+								<div class="item-review--rate flexing-center">
+									<img src="assets/images/svg/star-icon.svg" alt="star" class="mx-2">4.6</div>
+							</div>
+						</div>
+					  </div>
+					  <div class="swiper-slide item flexing-center flex-column">
+						<img src="assets/images/webp/review-3.webp" alt="" class="item-img">
+						<div class="item-review">
+							<h5 class="item-review--header mb-1 mb-sm-3">Best! I got the house I wanted through Hounter</h5>
+							<p class="item-review--text mb-1 mb-sm-3">Through this website I can get a house with the type and specifications I want very easily, without a complicated process to be able to find information on the house we want.</p>
+							<div class="d-flex mb-1 mb-sm-3 align-items-center justify-content-between">
+								<div class="item-review--user d-flex">
+									<img src="assets/images/webp/user.webp" alt="">
+									<div class="d-flex flex-column">
+										<p class="name">Dianne Russell</p>
+										<p class="title">Manager Director</p>
+									</div>
+								</div>
+								<div class="item-review--rate flexing-center">
+									<img src="assets/images/svg/star-icon.svg" alt="star" class="mx-2">4.6</div>
+							</div>
+						</div>
+					  </div>
+					  <div class="swiper-slide item flexing-center flex-column">
+						<img src="assets/images/webp/review-4.webp" alt="" class="item-img">
+						<div class="item-review">
+							<h5 class="item-review--header mb-1 mb-sm-3">Best! I got the house I wanted through Hounter</h5>
+							<p class="item-review--text mb-1 mb-sm-3">Through this website I can get a house with the type and specifications I want very easily, without a complicated process to be able to find information on the house we want.</p>
+							<div class="d-flex mb-1 mb-sm-3 align-items-center justify-content-between">
+								<div class="item-review--user d-flex">
+									<img src="assets/images/webp/user.webp" alt="">
+									<div class="d-flex flex-column">
+										<p class="name">Dianne Russell</p>
+										<p class="title">Manager Director</p>
+									</div>
+								</div>
+								<div class="item-review--rate flexing-center">
+									<img src="assets/images/svg/star-icon.svg" alt="star" class="mx-2">4.6</div>
+							</div>
+						</div>
+					  </div>
+					  <div class="swiper-slide item flexing-center flex-column">
+						<img src="assets/images/webp/review-5.webp" alt="" class="item-img">
+						<div class="item-review">
+							<h5 class="item-review--header mb-1 mb-sm-3">Best! I got the house I wanted through Hounter</h5>
+							<p class="item-review--text mb-1 mb-sm-3">Through this website I can get a house with the type and specifications I want very easily, without a complicated process to be able to find information on the house we want.</p>
+							<div class="d-flex mb-1 mb-sm-3 align-items-center justify-content-between">
+								<div class="item-review--user d-flex">
+									<img src="assets/images/webp/user.webp" alt="">
+									<div class="d-flex flex-column">
+										<p class="name">Dianne Russell</p>
+										<p class="title">Manager Director</p>
+									</div>
+								</div>
+								<div class="item-review--rate flexing-center">
+									<img src="assets/images/svg/star-icon.svg" alt="star" class="mx-2">4.6</div>
+							</div>
+						</div>
+					  </div>
+					</div>
+					<div class="swiper-pagination"></div>
+				  </div>
+			</div>
+		</section>
+		<!--Review Section End-->
+		<!--Blog Section-->
+		<section class="blog custom-pad-all flexing-center flex-column">
+			<div class="blog__top-text flexing-center yellow-text flex-column mb-3">
+				<span class="my-2"></span>
+				<p>See tips and trick from our partnership</p>
+			</div>
+			<h2 class="blog__header text-center mb-4">Find Out More About </br>
+				Selling And Buying Homes</h2>
+			<button class="blog__button mb-4">More Article</button>
+			<div class="blog__blogs d-flex flex-column-reverse flex-lg-row align-items-stretch justify-content-between my-lg-5 my-2">
+				<div class="blog__blogs-group d-flex flex-column justify-content-between">
+					<div class="d-flex w-100">
+						<img src="assets/images/webp/sell-slider3.webp" alt="" class="blog__blogs-group--img">
+						<div class="d-flex align-items-start justify-content-lg-between justify-content-xxl-start justify-content-start flex-column">
+							<div class="blog__blogs-group--user d-flex align-items-center mb-xxl-2">
+								<img src="assets/images/webp/user.webp" alt="">
+								<p>Dianne Russell</p>
+							</div>
+							<h4 class="blog__blogs-group--header mb-xxl-3">The things We Need To Check When We Want To Buy A House</h4>
+							<p class="blog__blogs-group--time d-flex align-items-center"><img src="assets/images/svg/time.svg" alt="" class="mx-2"> 4 min read | 25 Apr 2021</p>
+						</div>
+					</div>
+					<div class="d-flex w-100">
+						<img src="assets/images/webp/blog-1.webp" alt="" class="blog__blogs-group--img">
+						<div class="d-flex align-items-start justify-content-lg-between justify-content-xxl-start justify-content-start  flex-column">
+							<div class="blog__blogs-group--user d-flex align-items-center  mb-xxl-2">
+								<img src="assets/images/webp/user.webp" alt="">
+								<p>Dianne Russell</p>
+							</div>
+							<h4 class="blog__blogs-group--header  mb-xxl-3">The things We Need To Check When We Want To Buy A House</h4>
+							<p class="blog__blogs-group--time d-flex align-items-center"><img src="assets/images/svg/time.svg" alt="" class="mx-2"> 4 min read | 25 Apr 2021</p>
+						</div>
+					</div>
+					<div class="d-flex w-100">
+						<img src="assets/images/webp/sell-slider2.webp" alt="" class="blog__blogs-group--img">
+						<div class="d-flex align-items-start justify-content-lg-between justify-content-xxl-start  justify-content-start  flex-column">
+							<div class="blog__blogs-group--user d-flex align-items-center  mb-xxl-2">
+								<img src="assets/images/webp/user.webp" alt="">
+								<p>Dianne Russell</p>
+							</div>
+							<h4 class="blog__blogs-group--header  mb-xxl-3">The things We Need To Check When We Want To Buy A House</h4>
+							<p class="blog__blogs-group--time d-flex align-items-center"><img src="assets/images/svg/time.svg" alt="" class="mx-2"> 4 min read | 25 Apr 2021</p>
+						</div>
+					</div>
+				</div>
+				<div class="blog__blogs-main d-flex flex-lg-column flex-sm-row flex-column">
+					<img src="assets/images/webp/blog-main.webp" alt="" class="blog__blogs-main--img">
+					<div class="d-flex flex-column">
+						<div class="blog__blogs-main--user d-flex align-items-center mb-2">
+							<img src="assets/images/webp/user.webp" alt="">
+							<p>Cameron Williamson</p>
+						</div>
+						<h4 class="blog__blogs-main--header mb-3">12 Things To Know Before Buying A House</h4>
+						<p class="blog__blogs-main--desc mb-3">Want to buy a house but are unsure about what we should know, here I will try to explain what we should know and check when we want to buy a house</p>
+						<p class="blog__blogs-main--time d-flex align-items-center"><img src="assets/images/svg/time.svg" alt="" class="mx-lg-2"> 8 min read | 25 Apr 2021</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--Blog Section End-->
+
+		<!--Subscribe Section-->
+		<section class="custom-pad-all">
+			<div class="subscribe flexing-center flex-column position-relative">
+				<img class="house h-1" src="assets/images/webp/featured-1.webp" alt="house">
+				<img class="house h-6" src="assets/images/webp/featured-3.webp" alt="house">
+				<img class="house h-3" src="assets/images/webp/user.webp" alt="house">
+				<img class="house h-4" src="assets/images/webp/review-4.webp" alt="house">
+				<img class="house h-2" src="assets/images/webp/review-2.webp" alt="house">
+				<img class="house h-5" src="assets/images/webp/sell-img.webp" alt="house">
+				<p class="subscribe__text text-center mb-4">Subscribe For More Info</br>
+					And Update From Hounter</p>
+				<form id="mail-form" class="subscribe__form general-form d-flex align-items-center justify-content-between">
+					<img src="assets/images/svg/mail-icon.svg" alt="search icon">
+					<input type="text" name="" id="subscribe" placeholder="Your email here!">
+					<button type="submit" class="flexing-center">Subscribe</button>
+				</form>
+				<p id="error-text" class="text-start"></p>
+			</div>
+		</section>
+		<!--Subscribe Section End-->
+	</main>
+	<!-- GostLoader -->
+	<section id="skeloton-screen">
+		<div class="gost-hero w-100 d-flex">
+			<div class="gost-hero-left d-flex flex-column justify-content-center align-items-start">
+				<div class="title"></div>
+				<div class="title"></div>
+				<div class="box"></div>
+				<div class="title"></div>
+			</div>
+			<div class="gost-hero-right d-flex align-items-end justify-content-center">
+				<div class="gost-hero-right--bottom d-flex">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+			</div>
+		</div>
+		<div class="gost-recom w-100 d-flex flex-column align-items-lg-start align-items-center">
+			<div class="title"></div>
+			<div class="d-flex justify-content-between align-items-center flex-lg-row flex-column w-100">
+				<div class="title my-2 my-lg-0"></div>
+				<div class="title-2"></div>
+			</div>
+			<div class="d-flex">
+				<div class="gost-card m-3">
+					<div class="box"></div>
+					<div class="title my-lg-2 my-1"></div>
+					<div class="title my-lg-2 my-1"></div>
+					<div class="box-2 d-flex align-items-center justify-content-between">
+						<div class="circle"></div>
+						<div class="title-3"></div>
+					</div>
+				</div>
+				<div class="gost-card m-3">
+					<div class="box"></div>
+					<div class="title my-2"></div>
+					<div class="title my-2"></div>
+					<div class="box-2 d-flex align-items-center justify-content-between">
+						<div class="circle"></div>
+						<div class="title-3"></div>
+					</div>
+				</div>
+				<div class="gost-card m-3">
+					<div class="box"></div>
+					<div class="title my-2"></div>
+					<div class="title my-2"></div>
+					<div class="box-2 d-flex align-items-center justify-content-between">
+						<div class="circle"></div>
+						<div class="title-3"></div>
+					</div>
+				</div>
+				<div class="gost-card m-3">
+					<div class="box"></div>
+					<div class="title my-2"></div>
+					<div class="title my-2"></div>
+					<div class="box-2 d-flex align-items-center justify-content-between">
+						<div class="circle"></div>
+						<div class="title-3"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="gost-sell w-100 d-flex justify-content-between flex-lg-row flex-column">
+			<div class="gost-sell-left d-flex align-items-center flex-column align-items-lg-start">
+				<div class="title"></div>
+				<div class="title-2 my-2"></div>
+				<div class="title-2 my-2"></div>
+				<div class="d-flex w-100 flex-wrap justify-content-center justify-content-lg-start">
+					<div class="box-2 m-3"></div>
+					<div class="box-2 m-3"></div>
+					<div class="box-2 m-3"></div>
+					<div class="box-2 m-3"></div>
+				</div>
+				<div class="d-flex align-items-center justify-content-lg-start w-100 justify-content-center ">
+					<div class="circle"></div>
+					<div class="title"></div>
+				</div>
+			</div>
+			<div class="gost-sell-right">
+				<div class="box"></div>
+			</div>
+		</div>
+		<div class="gost-review w-100 d-flex align-items-center justify-content-start flex-column">
+			<div class="title"></div>
+			<div class="title my-3"></div>
+			<div class="d-flex w-100 my-4 justify-content-evenly">
+				<div class="gost-slide">
+					<div class="box"></div>
+					<div class="box-2">
+						<div class="title-2"></div>
+						<div class="title-2 my-3"></div>
+						<div class="d-flex w-100 align-items-center justify-content-between">
+							<div class="circle"></div>
+							<div class="title-3"></div>
+						</div>
+					</div>
+				</div>
+				<div class="gost-slide">
+					<div class="box"></div>
+					<div class="box-2">
+						<div class="title-2"></div>
+						<div class="title-2 my-3"></div>
+						<div class="d-flex w-100 align-items-center justify-content-between">
+							<div class="circle"></div>
+							<div class="title-3"></div>
+						</div>
+					</div>
+				</div>
+				<div class="gost-slide">
+					<div class="box"></div>
+					<div class="box-2">
+						<div class="title-2"></div>
+						<div class="title-2 my-3"></div>
+						<div class="d-flex w-100 align-items-center justify-content-between">
+							<div class="circle"></div>
+							<div class="title-3"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="gost-blog d-flex flex-column w-100 align-items-center">
+			<div class="title"></div>
+			<div class="title my-3"></div>
+			<div class="d-flex w-100 my-5 justify-content-between flex-sm-row flex-column-reverse">
+				<div class="gost-blog-left">
+					<div class="d-flex">
+						<div class="box"></div>
+						<div class="info d-flex flex-column">
+							<div class="title-2 my-3"></div>
+							<div class="title-2"></div>
+						</div>
+					</div>
+					<div class="d-flex my-3">
+						<div class="box"></div>
+						<div class="info d-flex flex-column">
+							<div class="title-2 my-3"></div>
+							<div class="title-2"></div>
+						</div>
+					</div>
+					<div class="d-flex my-3">
+						<div class="box"></div>
+						<div class="info d-flex flex-column">
+							<div class="title-2 my-3"></div>
+							<div class="title-2"></div>
+						</div>
+					</div>
+					<div class="d-flex">
+						<div class="box"></div>
+						<div class="info d-flex flex-column">
+							<div class="title-2 my-3"></div>
+							<div class="title-2"></div>
+						</div>
+					</div>
+				</div>
+				<div class="gost-blog-right">
+					<div class="box-2"></div>
+					<div class="title my-3"></div>
+					<div class="title-3"></div>
+					<div class="title-3 my-3"></div>
+				</div>
+			</div>
+		</div>
+		<div class="gost-subs flexing-center w-100">
+			<div class="box d-flex align-items-center justify-content-center flex-column">
+				<div class="title"></div>
+				<div class="title my-3"></div>
+				<div class="box-2"></div>
+			</div>
+		</div>
+	</section>
+	<!--GostLoader End-->
+	<footer class="d-flex justify-content-between align-items-start flex-lg-row flex-column">
+		<div class="footer__desc d-flex flex-lg-column flex-sm-row flex-column">
+			<div class="footer__desc--logo d-flex align-items-center mb-4">
+				<img src="assets/images/svg/logo.svg" alt="logo">
+				<p>Hounter</p>
+			</div>
+			<div class="d-flex flex-column">
+				<p class="footer__desc--text mb-4">
+					We provide information about properties such as houses, villas and apartments to help people find their dream home
+				</p>
+				<ul class="footer__desc--social-media d-flex">
+					<li class="footer__desc--social-media-item"><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+					<li class="footer__desc--social-media-item"><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+					<li class="footer__desc--social-media-item"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer__links d-flex flex-wrap flex-sm-nowrap">
+			<div class="footer__links-group">
+				<p class="link-header">Property</p>
+				<ul class="link-group">
+					<li class="link-group--item mb-2"><a href="#">House</a></li>
+					<li class="link-group--item mb-2"><a href="#">Apartment</a></li>
+					<li class="link-group--item mb-2"><a href="#">Villa</a></li>
+				</ul>
+			</div>
+			<div class="footer__links-group">
+				<p class="link-header">Article</p>
+				<ul class="link-group">
+					<li class="link-group--item mb-2"><a href="#">New Article</a></li>
+					<li class="link-group--item mb-2"><a href="#">Popular Article</a></li>
+					<li class="link-group--item mb-2"><a href="#">Most Read</a></li>
+					<li class="link-group--item mb-2"><a href="#">Tips & Tricks</a></li>
+				</ul>
+			</div>
+			<div class="footer__links-group">
+				<p class="link-header">Contact</p>
+				<ul class="link-group">
+					<li class="link-group--item mb-2"><p>2464 Royal Ln. Mesa, New Jersey 45463</p></li>
+					<li class="link-group--item mb-2"><p>(671) 555-0110</p></li>
+					<li class="link-group--item mb-2"><p>info@hounter.com</p></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+	<!-- Bootstrap CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	 <!-- SwiperJS CDN -->
+	 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	 <!-- Jquery CDN -->
+	 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	 <!-- GLightbox CDN -->
+	 <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+	 <!-- SweetAlert CDN -->
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	 <!-- Local Folders -->
+     <script src="dist/js/swiper.js"></script>
+	 <script src="dist/js/glightbox.js"></script>
+	 <script src="dist/js/validation.js"></script>
+	 <script src="dist/js/script.js"></script>
+</body>
+</html>
