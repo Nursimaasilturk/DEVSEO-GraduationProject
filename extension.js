@@ -1,16 +1,16 @@
 const vscode = require('vscode');
 const StatusBar = require('./core/StatusBar.js');
-const Checker = require('./core/checker.js');
+const CommandManager = require('./core/CommandManager.js');
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 async function activate(context) {
 	StatusBar.activate();
-	context.subscriptions.push(Checker.singleHTMLElementChecker);
-	context.subscriptions.push(Checker.multiHtmlElementChecker);
-	context.subscriptions.push(Checker.singlePageSEOChecker);
-	context.subscriptions.push(Checker.allPagesSEOChecker);
+	context.subscriptions.push(CommandManager.selectSingleElement);
+	context.subscriptions.push(CommandManager.selectMultipleElements);
+	context.subscriptions.push(CommandManager.selectSinglePage);
+	context.subscriptions.push(CommandManager.selectMultiplePage);
 }
 
 // This method is called when your extension is deactivated

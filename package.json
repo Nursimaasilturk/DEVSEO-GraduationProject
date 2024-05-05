@@ -21,9 +21,14 @@
         "title": "Start Devseo"
       },
       {
-        "command": "devseo.readPage",
-        "title": "Sayfa içeriğini al"
-      },{
+        "command": "devseo.readSinglePagePDF",
+        "title": "Sayfa içeriğini al - PDF"
+      },
+      {
+        "command": "devseo.readSinglePageHTML",
+        "title": "Sayfa içeriğini al - HTML"
+      },
+      {
         "command": "devseo.readAllPages",
         "title" : "Tüm HTML Sayfaları Tara"
       },
@@ -33,9 +38,19 @@
       },
       {
         "command": "devseo.selectCodeBlock",
-        "title": "Multiple Code Block"
+        "title": "Multiple Code Block",
+        "key": "ctrl+shift+T"
       }
     ], 
+    
+    "keybindings": [
+      {
+          "command": "devseo.selectCodeBlock",
+          "key": "ctrl+shift+t",
+          "mac": "cmd+shift+t",
+          "when": "editorTextFocus"
+      }
+  ],
     "icons": {
       "devseo-status-bar-icon": {
         "icon": "assets/images/status-bar-icon.png",

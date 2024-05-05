@@ -1,5 +1,6 @@
 //let { titleFont, baseFont, lightFont } = require('./fonts.js');
 let { printSubtitle, printTagTitle } = require('./helper/titleHelper.js');
+
 const checkH1Tags = (pageContent, pdfDoc) => {
     printTagTitle('H1 CHECK', pdfDoc);
     const h1TagCount = (pageContent.match(/<h1\b[^>]*>(.*?)<\/h1>/gi) || []).length;
