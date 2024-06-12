@@ -19,6 +19,10 @@ class HTMLChecker {
     }
 
     h1Check() {
+
+        var lines = this.pageContent.includes('<h1');
+
+        
         this.issues.push({
             type:'GLOBAL',
             message: "Image alt tag missing",
@@ -38,11 +42,25 @@ class HTMLChecker {
 
 
     anchorCheck(){
-        this.issues.push({
-            type:'LOCAL',
-            message: "Image alt tag missing",
-            line:20
-        });
+
+        var lines = this.pageContent.split('\n'); 
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i].trim();
+            // a etiketini kontrol et
+            if (line.includes('<a')) {
+                // href özniteliğini kontrol et
+                if (!line.includes('href=')) {
+                    // href özniteliği yoksa issues dizisine ekle
+                    this.issues.push({
+                        type: 'LOCAL',
+                        message: 'Anchor href tag missing',
+                        line: i + 1 // satır numarasını 1'den başlat
+                    });
+                }
+            }
+        }
+        
+    
         return this;
     }
 

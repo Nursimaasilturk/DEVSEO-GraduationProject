@@ -1,4 +1,4 @@
-//let { titleFont, baseFont, lightFont } = require('./fonts.js');
+let { titleFont, baseFont, lightFont } = require('./fonts.js');
 let { printSubtitle, printTagTitle } = require('./helper/titleHelper.js');
 
 const checkH1Tags = (pageContent, pdfDoc) => {

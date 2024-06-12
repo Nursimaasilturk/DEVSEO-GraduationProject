@@ -133,7 +133,7 @@ let selectSinglePageHTML = vscode.commands.registerCommand("devseo.readSinglePag
 
     const pageText = editor.document.getText();
 
-    const issuesList = new HTMLChecker().check(pageChecks)
+    const issuesList = new HTMLChecker().check(pageText)
     .anchorCheck()
     .h1Check()
     .headCheck()

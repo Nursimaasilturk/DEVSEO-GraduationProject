@@ -11,24 +11,34 @@ class CodeSelectionStrategy{
     }
     /*begin::Single Element in One Selection */
 
-    static checkImageTag({ selectedText,selection,editor }) {
+    static checkImageTag({ selectedText, selection, editor }) {
         if (selectedText.includes("<img")) {
-            if (!selectedText.includes("alt")) {
-                // Eğer alt tagi yoksa, alt attribute'yi ekleyelim.
-                let updatedText = selectedText.replace("/>", "alt=\"\"/	>");
-                let position = selection.start.translate(-1, 0); // Seçimin başlangıcının üst satırına git
-                let line = editor.document.lineAt(position);
-                let edit = new vscode.WorkspaceEdit();
-                edit.insert(editor.document.uri, line.range.end, `<!-- ${updatedText.trim()} -->\n`);
-                vscode.workspace.applyEdit(edit);
-                vscode.window.showInformationMessage("Added alt attribute to img tag as a comment in the line above.");
-            } else {
-                vscode.window.showInformationMessage("Selected text contains img tag with alt attribute.");
-            }
-        } else {
-            vscode.window.showInformationMessage("Selected text does not contain img tag.");
-        }
+            let updatedText = selectedText;
+    
+            // img etiketi içindeki alt özniteliğini kontrol et ve ekle
+            const imgTagRegex = /<img\b[^>]*>/gi;
+            updatedText = updatedText.replace(imgTagRegex, (imgTag) => {
+                if (!imgTag.includes("alt")) {
+                    if (imgTag.includes("/>")) {
+                        return imgTag.replace("/>", "alt=\"\" />");
+                    } else {
+                        return imgTag.replace(">", "alt=\"\" >");
+                    }
+                }
+                return imgTag;
+            });
+    
+            // Seçimin başlangıcının bulunduğu konuma git
+            let position = selection.start;
+            let edit = new vscode.WorkspaceEdit();
+    
+            // Seçili metnin üstüne güncellenmiş metni yorum olarak ekle
+            edit.insert(editor.document.uri, position, `<!-- ${updatedText.trim()} -->\n`);
+            vscode.workspace.applyEdit(edit);
+        } 
     }
+    
+    
     static checkAnchorTag({  selectedText, selection, editor }) {
         if (selectedText.includes("<a")) {
             if (!selectedText.includes("href")) {
@@ -39,11 +49,7 @@ class CodeSelectionStrategy{
                 edit.insert(editor.document.uri, line.range.end, `${updatedText.trim()}\n`);
                 vscode.workspace.applyEdit(edit);
                 vscode.window.showInformationMessage("Added href attribute to anchor tag as a comment in the line above.");
-            } else {
-                vscode.window.showInformationMessage("Selected text contains anchor tag with href attribute.");
-            }
-        } else {
-            vscode.window.showInformationMessage("Selected text does not contain anchor tag.");
+            } 
         }
     }
 
@@ -51,6 +57,7 @@ class CodeSelectionStrategy{
 
     }
     /*end::Single Element in One Selection */
+    
     /*begin::Multiple Element in One Selection */
     
     /*end::Multiple Element in One Selection */

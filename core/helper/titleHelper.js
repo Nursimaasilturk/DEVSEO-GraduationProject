@@ -18,6 +18,7 @@ const printSubtitle = ( message , pdfDoc ) => {
 }
 
 const printTagTitle = (title, pdfDoc) => {
+
     pdfDoc.font(titleFont);
     pdfDoc.fillColor('#2d8bba');
     pdfDoc.fontSize(15);
