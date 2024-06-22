@@ -47,9 +47,10 @@
           "when": "editorTextFocus"
       }
   ],
-    "icons": {
+    "iconDefinitions": {
       "devseo-status-bar-icon": {
         "icon": "assets/images/status-bar-icon.png",
+        "iconPath": "assets/images/status-bar-icon.png",
         "description": "Custom icon for DevSEO",
         "default": {
           "fontPath": "codicons.ttf", 
@@ -60,9 +61,9 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "package-explorer",
-          "title": "Package Explorer",
-          "icon": "resources/package-explorer.svg"
+          "id": "status-bar",
+          "title": "status-bar",
+          "icon": "assets/images/status-bar-icon.png"
         }
       ]
     },

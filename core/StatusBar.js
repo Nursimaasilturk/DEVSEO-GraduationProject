@@ -5,7 +5,7 @@ class StatusBar{
     static activate(){
         const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right,100);
         // gösterilecek olan text
-        statusBarItem.text="$(devseo-status-bar-icon) DEVSEO";
+        statusBarItem.text=`$(search) DEVSEO(57%)`;
         // iconun üstine geldiğinde çıkan kısa açıklama
         statusBarItem.tooltip = "Click to run SEO optimization"
         // iconun statusbarda gösterilmesi
