@@ -2,16 +2,21 @@ const vscode = require('vscode');
 
 class StatusBar{
 
-    static activate(){
-        const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right,100);
+     static statusBarItem;
+    static activate({ percent = 95 }){
+         this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right,100);
         // gösterilecek olan text
-        statusBarItem.text=`$(search) DEVSEO(57%)`;
+        this.statusBarItem.text=`$(search) DEVSEO(${percent}%)`;
         // iconun üstine geldiğinde çıkan kısa açıklama
-        statusBarItem.tooltip = "Click to run SEO optimization"
+        this.statusBarItem.tooltip = "Click to run SEO optimization"
         // iconun statusbarda gösterilmesi
-        statusBarItem.show();
+        this.statusBarItem.show();
         // çalışacak olan komut
-        statusBarItem.command= 'devseo.status';
+        this.statusBarItem.command= 'devseo.status';
+    }
+
+    static updateSEOPercent({ percent }){
+        this.statusBarItem.text=`$(search) DEVSEO(${percent}%)`;
     }
 }
 
