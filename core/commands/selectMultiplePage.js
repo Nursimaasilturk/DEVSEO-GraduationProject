@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const PDFDocument = require('pdfkit');
 let pageChecks = require('../pageChecks.js');
-let { titleFont, baseFont, lightFont } = require('../fonts.js');
+let { titleFont, baseFont, lightFont } = require('./../fonts.js');
 
 
 
@@ -63,19 +63,20 @@ let selectMultiplePage = vscode.commands.registerCommand("devseo.readAllPagesPDF
 
 const pageIssueChecker = (pageContent, pageIssuesList,pdfDoc)=> {
 	let h1Problems = pageChecks.checkH1Tags(pageContent,pdfDoc);
-	/*let footerProblems = pageChecks.checkFooterTags(pageContent);
-	let titleProblems = pageChecks.checkTitleTag(pageContent);
+	let footerProblems = pageChecks.checkFooterTags(pageContent);
+	/*let titleProblems = pageChecks.checkTitleTag(pageContent);
 	let metaDescriptionTagProblems = pageChecks.checkMetaDescriptionTag(pageContent);
 	let checkMetaTagKeywords = pageChecks.checkMetaKeywordsTag(pageContent);
-    */
+    
 
-   /*	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${h1Problems}\nPAGE_CONTENT\n`);
+   pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${h1Problems}\nPAGE_CONTENT\n`);
  
-	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${footerProblems}\nPAGE_CONTENT\n`);
 	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${titleProblems}\nPAGE_CONTENT\n`);
 	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${metaDescriptionTagProblems}\nPAGE_CONTENT\n`);
 	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${checkMetaTagKeywords}\nPAGE_CONTENT\n`);
 	*/
+    pageIssuesList = pageIssuesList.replace('PAGE_CONTENT', `${footerProblems}\nPAGE_CONTENT\n`);
+
 	pageIssuesList = pageIssuesList.replace('PAGE_CONTENT','');
 	return pageIssuesList;
 }

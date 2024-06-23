@@ -9,55 +9,45 @@
   "categories": [
     "Other"
   ],
-"activationEvents": [
+  "activationEvents": [
     "onStartupFinished"
-],
-
+  ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "devseo.readSinglePagePDF",
-        "title": "DEVSEO: Sayfa içeriğini al - PDF"
-      },
       {
         "command": "devseo.readSinglePageHTML",
         "title": "DEVSEO: Sayfa içeriğini al - HTML"
       },
       {
-        "command": "devseo.readAllPagesPDF",
-        "title" : "DEVSEO: Tüm Sayfaları Tara - PDF"
-      },
-      {
         "command": "devseo.readAllPagesHTML",
-        "title" : "DEVSEO: Tüm Sayfaları Tara - HTML"
+        "title": "DEVSEO: Tüm Sayfaları Tara - HTML"
       },
       {
-        "command": "devseo.selectCodeBlock",
+        "command": "devseo.status",
         "title": "Multiple Code Block",
         "key": "ctrl+shift+T"
       }
-    ], 
-    
+    ],
     "keybindings": [
       {
-          "command": "devseo.selectCodeBlock",
-          "key": "ctrl+shift+t",
-          "mac": "cmd+shift+t",
-          "when": "editorTextFocus"
+        "command": "devseo.status",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t",
+        "when": "editorTextFocus"
       }
-  ],
+    ],
     "iconDefinitions": {
       "devseo-status-bar-icon": {
         "icon": "assets/images/status-bar-icon.png",
         "iconPath": "assets/images/status-bar-icon.png",
         "description": "Custom icon for DevSEO",
         "default": {
-          "fontPath": "codicons.ttf", 
-          "fontCharacter": "\uE271" 
+          "fontPath": "codicons.ttf",
+          "fontCharacter": ""
         }
       }
-    }, 
+    },
     "viewsContainers": {
       "activitybar": [
         {
@@ -96,6 +86,7 @@
   },
   "dependencies": {
     "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
     "openai": "^4.24.7",
     "pdfkit": "^0.14.0",
     "puppeteer": "^21.6.1"

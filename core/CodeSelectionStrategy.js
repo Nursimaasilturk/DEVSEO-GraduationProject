@@ -2,7 +2,7 @@ const vscode = require('vscode');
 
 class CodeSelectionStrategy{
 
-    static checkSelection({editor}){
+    static checkSelection({ editor }){
         let selection = editor.selection;
         let selectedText = editor.document.getText(selection);
 
@@ -53,13 +53,7 @@ class CodeSelectionStrategy{
         }
     }
 
-    static checkHtmlTag({ selectedText, selection, editor }){
 
-    }
-    /*end::Single Element in One Selection */
-    
-    /*begin::Multiple Element in One Selection */
-    
-    /*end::Multiple Element in One Selection */
+ 
 }
 module.exports = CodeSelectionStrategy;
