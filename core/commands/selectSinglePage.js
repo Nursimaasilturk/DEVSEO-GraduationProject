@@ -139,7 +139,6 @@ let selectSinglePageHTML = vscode.commands.registerCommand("devseo.readSinglePag
     .headCheck()
     .imageTagCheck();
 
-    console.log(issuesList.issues);
   //  const h1TagCount = (pageText.match(/<h1\b[^>]*>(.*?)<\/h1>/gi) || []).length;
 
 });

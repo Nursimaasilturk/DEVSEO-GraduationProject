@@ -6,16 +6,13 @@ const path = require('path');
 class HTMLBuilder{
 
     static issues = [];
+    static performanceIssues = [];
    
-    constructor(issues){
+    constructor({issues, performanceIssues }){
         this.issues = issues;
+        this.performanceIssues = performanceIssues;
     }
 
-    //map all issues put into ul & li elements
-     build(){
-         this.issues.map(issue => `<li>${issue.message}</li>` ).join('');
-        return this;
-    }
 
     //import and html file from "/assets/templates/index.html" and put issues into #issues_list element
      render(){
@@ -29,20 +26,34 @@ class HTMLBuilder{
         workspaceFolders[0].uri.fsPath
         const outputFilePath = path.join( workspaceFolders[0].uri.fsPath, 'output.html');
 
-        fs.readFile(`${__dirname}/../index.html`,'utf-8',(err,data) => {
+        fs.readFile(`${__dirname}/../template/index.html`,'utf-8',(err,data) => {
             if(err){
-                console.log(err);
                 return;
             }
 
-            console.log(data);
             const $ = cheerio.load(data);
 
-            const issuesListElement = $('#issues_list');
+            const issuesListElement = $('#seo_issues_list');
+            const performanceIssuesListElement = $('#performance_issues_list');
+
             issuesListElement.empty();
+            performanceIssuesListElement.empty();
             
             this.issues.forEach(issue => {
-                issuesListElement.append(`<li>${issue.message} - element: ${escapeHtml(issue.html)}</li>`);
+                issuesListElement.append(`	
+                    <div class="d-flex align-items-start justify-content-between px-3 my-1">
+						<p class="optimization-item">${issue.message}</p>
+						<img src="https://storage.biwebdesigns.com/devseo/warning.svg" />
+					</div>`);
+            });
+
+          
+            this.performanceIssues.forEach(issue => {
+                performanceIssuesListElement.append(`	
+                    <div class="d-flex align-items-start justify-content-between px-3 my-1">
+						<p class="optimization-item">${issue.message}</p>
+						<img src="https://storage.biwebdesigns.com/devseo/success.svg" />
+					</div>`);
             });
 
           
@@ -52,7 +63,6 @@ class HTMLBuilder{
                     console.log(err);
                     return;
                 }
-                console.log("Writing tamamlandı");
             })
         });
 
