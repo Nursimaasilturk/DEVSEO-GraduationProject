@@ -47,9 +47,21 @@ async function findMissingSEOAttributes(document) {
             id: issues.length + 1,
             name: element.name,
             html,
-            message: "ALT attribute is missing on an image element"
+            message: "ALT attribute is missing on an image element",
+            type:"WARNING"
         });
-       
+
+    });
+
+    let correctImgCount = 0;
+    $('img:has([alt])').each((index, element) => {
+       correctImgCount++;
+    });
+    issues.push({
+        id: issues.length + 1,
+        name: "Image",
+        message: `ALT attribute has been set correctly for ${correctImgCount} on image elements`,
+        type:"SUCCESS"
     });
 
     $('a:not([href])').each((index, element) => {
@@ -58,10 +70,21 @@ async function findMissingSEOAttributes(document) {
             id: issues.length + 1,
             name: element.name,
             html,
-             message: "HREF attribute missing on an anchor element"
+             message: "HREF attribute missing on an anchor element",
+                   type:"WARNING"
         });
-       
+  
     });
+
+    let correctAnchorTagCount = $('a[href]').length;
+
+    if(correctAnchorTagCount > 0)
+        issues.push({
+            id: issues.length + 1,
+            name: "Anchor Tag",
+            message: `Href attribute has been set correctly for ${correctAnchorTagCount} anchor elements`,
+            type: "SUCCESS"
+        });
 
     ['header', 'main', 'footer', 'body'].forEach(tag => {
         if ($(tag).length > 1) {
@@ -69,8 +92,16 @@ async function findMissingSEOAttributes(document) {
             issues.push({
                 id: issues.length + 1,
                 name: tag,
-         
-                message: `${$(tag).length} times ${tag.toUpperCase()} elements found`
+                message: `${$(tag).length} times ${tag.toUpperCase()} elements found`,
+                      type:"WARNING"
+            });
+        }
+        if ($(tag).length == 1){
+            issues.push({
+                id: issues.length + 1,
+                name: tag,
+                message: `${$(tag).length} times ${tag.toUpperCase()} elements found`,
+                      type:"SUCCESS"
             });
         }
     });
@@ -81,8 +112,17 @@ async function findMissingSEOAttributes(document) {
             issues.push({
                 id: issues.length + 1,
                 name: element.name,
-             
+                   type:"WARNING",
                 message: 'FIGURE element missing a FIGCAPTION child element'
+            });
+        }
+
+        if ($(element).children('figcaption').length === 1){
+            issues.push({
+                id: issues.length + 1,
+                name: element.name,
+                   type:"SUCCESS",
+                message: 'FIGURE element has a FIGCAPTION child element'
             });
         }
     });
@@ -92,8 +132,15 @@ async function findMissingSEOAttributes(document) {
         issues.push({
             id: issues.length + 1,
             name:'meta[name="description"]',
-            
+                  type:"WARNING",
             message: 'META DESCRIPTION tag missing'
+        });
+    }else{
+        issues.push({
+            id: issues.length + 1,
+            name:'meta[name="description"]',
+                type:"SUCCESS",
+            message: 'META DESCRIPTION tag exists'
         });
     }
   
@@ -101,8 +148,15 @@ async function findMissingSEOAttributes(document) {
         issues.push({
             id: issues.length + 1,
             name:'meta[name="description"]',
-          
+                type:"WARNING",
             message: 'META DESCRIPTION tag exists but content is empty'
+        });
+    }else{
+        issues.push({
+            id: issues.length + 1,
+            name:'meta[name="description"]',
+                type:"SUCCESS",
+            message: 'META DESCRIPTION has content '
         });
     }
 
@@ -110,8 +164,15 @@ async function findMissingSEOAttributes(document) {
         issues.push({
             id: issues.length + 1,
             name:'meta[name="keywords"]',
-           
+                 type:"WARNING",
             message: 'META keywords tag exists but content is empty'
+        });
+    }else{
+        issues.push({
+            id: issues.length + 1,
+            name:'meta[name="keywords"]',
+                type:"SUCCESS",
+            message: 'META keywords content has been set correctly '
         });
     }
 
@@ -119,8 +180,15 @@ async function findMissingSEOAttributes(document) {
         issues.push({
             id: issues.length + 1,
             name:'meta[name="keywords"]',
-          
+                type:"WARNING",
             message: 'META keywords tag missing'
+        });
+    }else{
+        issues.push({
+            id: issues.length + 1,
+            name:'meta[name="keywords"]',
+                type:"SUCCESS",
+            message: 'META keywords tag exists'
         });
     }
 
@@ -129,7 +197,15 @@ async function findMissingSEOAttributes(document) {
         issues.push({
             id: issues.length + 1,
             name: 'title',
-            message: 'TITLE tag missing'
+            message: 'TITLE tag missing',
+                  type:"WARNING"
+        });
+    }else{
+        issues.push({
+            id: issues.length + 1,
+            name: 'title',
+            message: 'TITLE tag exists',
+                  type:"SUCCESS"
         });
     }
 
@@ -137,7 +213,15 @@ async function findMissingSEOAttributes(document) {
         issues.push({
             id: issues.length + 1,
             name: 'title',
-            message: 'TITLE is exist but value is missing'
+            message: 'TITLE is exist but value is missing',
+                  type:"WARNING"
+        });
+    }else{
+        issues.push({
+            id: issues.length + 1,
+            name: 'title',
+            message: 'TITLE has been set correctly',
+                  type:"SUCCESS"
         });
     }
   
@@ -147,12 +231,21 @@ async function findMissingSEOAttributes(document) {
      const workspace = vscode.workspace.workspaceFolders[0].uri.fsPath;
      await findLargeImages(workspace)
          .then(data => {
-
+            if(data){
             performanceIssues.push({
                 id: performanceIssues.length + 1,
                 name: 'Image',
                 message: 'Too big images size has been found in your workspace, please compress for better performance'
+                      ,type:"WARNING"
             });
+        }else{
+            performanceIssues.push({
+                id: performanceIssues.length + 1,
+                name: 'Image',
+                message: 'No too big images size has been found in your workspace, please compress for better performance'
+                      ,type:"SUCCESS"
+            });
+        }
          })
          .catch(error => {
              console.error('Error in main function:', error);
@@ -164,8 +257,16 @@ async function findMissingSEOAttributes(document) {
     if(!isMinifed(document.getText()))
         performanceIssues.push({
             id: performanceIssues.length + 1,
-            name: 'HTML minified',
-            message: 'File is not minifed, please minify to bettter performance!'
+            name: 'HTML minify',
+            message: 'HTML file is not minifed, please minify to bettter performance!',
+                  type:"WARNING"
+        });
+        else
+        performanceIssues.push({
+            id: performanceIssues.length + 1,
+            name: 'HTML minify',
+            message: 'HTML file is minifed correctly',
+                  type:"SUCCESS"
         });
 
 
@@ -176,7 +277,15 @@ async function findMissingSEOAttributes(document) {
                 performanceIssues.push({
                     id: performanceIssues.length + 1,
                     name: 'CSS minified',
-                    message: 'CSS is not minifed, please minify to bettter performance!'
+                    message: 'CSS is not minifed, please minify to bettter performance!',
+                          type:"WARNING"
+                });
+            }else{
+                performanceIssues.push({
+                    id: performanceIssues.length + 1,
+                    name: 'CSS minified',
+                    message: 'CSS is minifed correctly',
+                          type:"SUCCESS"
                 });
             }
         });

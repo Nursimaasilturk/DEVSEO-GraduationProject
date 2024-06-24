@@ -14087,6 +14087,7 @@
 					</div>
 				</div>
 			</div>
+			<!--
 			<div>
 				<div class="optimization-header-box">
 					<h2>Responsive Design Optimization</h2>
@@ -14157,6 +14158,7 @@
 					</div>
 				</div>
 			</div>
+			-->
 		</section>
 		<section class="ai-content-advicing my-5">
 			<div>
@@ -14168,7 +14170,7 @@
 						suggest content</p>
 				</div>
 				<div class="optimization-body py-2">
-					<div class="d-flex align-items-start justify-content-between px-3 my-1">
+					<div id="ai_seo_suggestion" class="d-flex align-items-start justify-content-between px-3 my-1">
 						<p class="optimization-item ai-suggestion"></p>
 					</div>
 				</div>
@@ -14193,13 +14195,19 @@
 			<p class="text-center">All Rights Reserved - Nursima Asiltürk & Ömer Atayilmaz</p>
 		</div>
 	</footer>
+
+	<input id="seo_success_count" type="hidden"/>
+	<input id="seo_warning_count" type="hidden"/>
 	<script>
+		const seoSuccessCount = document.getElementById("seo_success_count");
+		const seoWarningCount = document.getElementById("seo_warning_count");
+
 		document.addEventListener('DOMContentLoaded', (event) => {
 			const seo = {
 				labels: ['Success', 'Warning'],
 				datasets: [{
 					label: 'Oylar',
-					data: [40, 60],
+					data: [seoSuccessCount.value, seoWarningCount.value],
 					backgroundColor: [
 						'rgba(0, 255, 0, 0.7)',
 						'rgba(255, 99, 132, 0.7)'
