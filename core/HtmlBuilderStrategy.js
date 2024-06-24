@@ -41,23 +41,44 @@ class HTMLBuilder{
 
             const seoSuccessChartPercent = $("#seo_success_count");
             const seoWarningChartPercent = $("#seo_warning_count");
+            const seoLabel1= $("#seo_label_1");
+            const seoLabel1Count= $("#seo_label_1_warning_count");
+            const seoLabel2= $("#seo_label_2");
+            const seoLabel2Count= $("#seo_label_2_warning_count");
+            
+            const seoLabel3Count= $("#seo_label_1_success_count");
+            const seoLabel4Count= $("#seo_label_2_success_count");
 
             const answer = await openAPI(vscode.window.activeTextEditor.document.getText());
             
             issuesListElement.empty();
             performanceIssuesListElement.empty();
             aiElement.empty();
-            
+             //find 
+
             // find the count of issues by if status is "SUCCESS" or "WARNING"
             let totalIssuesCount = this.issues.filter(issue => issue.type === "WARNING").length + this.performanceIssues.filter(issue => issue.type === "WARNING").length;
             let totalSuccessCount = this.issues.filter(issue => issue.type === "SUCCESS").length + this.performanceIssues.filter(issue => issue.type === "SUCCESS").length;
-            console.log(totalIssuesCount,totalSuccessCount);
+      
+
             totalSuccessCount += 15;
             let issuePercent = (totalIssuesCount / (totalSuccessCount+totalIssuesCount))*100;
             let successPercent = (totalSuccessCount / (totalSuccessCount+totalIssuesCount))*100;
             seoSuccessChartPercent.val(successPercent.toFixed(2)); // sayıyı iki ondalık basamağa yuvarlamak için toFixed kullanabiliriz
             seoWarningChartPercent.val(issuePercent.toFixed(2));
 
+            let htmlStructureWarningCount = this.issues.filter(issue => issue.type === "WARNING").length;
+            let htmlStructureSuccessCount = this.issues.filter(issue => issue.type === "SUCCESS").length;
+            let performanceWarningCount = this.performanceIssues.filter(issue => issue.type === "WARNING").length;
+            let performanceSuccessCount = this.performanceIssues.filter(issue => issue.type === "SUCCESS").length;
+            seoLabel1Count.val(htmlStructureWarningCount);
+            seoLabel2Count.val(performanceWarningCount);
+            seoLabel1.val("HTML Structure");
+            seoLabel2.val("Performance");
+
+            performanceSuccessCount += 3;
+            seoLabel3Count.val(htmlStructureSuccessCount);
+            seoLabel4Count.val(performanceSuccessCount);
 
             aiElement.append(`<p class="optimization-item ai-suggestion">${escapeHtml(answer.choices[0].message.content)}</p>`);
             this.issues.forEach(issue => {

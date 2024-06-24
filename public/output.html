@@ -14197,37 +14197,37 @@
 						suggest content</p>
 				</div>
 				<div class="optimization-body py-2">
-					<div id="ai_seo_suggestion" class="d-flex align-items-start justify-content-between px-3 my-1"><p class="optimization-item ai-suggestion">### SEO Problems Detected:
-1. **Missing Meta Description &amp; Keywords:**
-   - It's important to have a meta description and keywords to improve the website's visibility and user understanding.
-  
-2. **Empty Title Tag:**
-   - Title tags are crucial for SEO as they are displayed in search engine results. It's recommended to have a descriptive title tag for each page.
-  
-3. **CSS Files Not Locally Hosted:**
-   - Loading CSS files from external CDNs may affect page loading speed negatively. Consider hosting CSS files locally to optimize performance.
-  
-4. **FontAwesome Version Mismatch:**
-   - Different versions of FontAwesome are being used for icons which can lead to inconsistency in appearance. Ensure consistent icon usage by sticking to one version.
-  
-5. **No Alt Text for Images:**
-   - Alt text is missing for several images which can impact accessibility and SEO. It's best practice to have descriptive alt text for images.
+					<div id="ai_seo_suggestion" class="d-flex align-items-start justify-content-between px-3 my-1"><p class="optimization-item ai-suggestion">SEO Problems and Advice:
+1. **Missing Meta Description and Keywords**:
+   - Add relevant meta description to provide a brief summary of the page content.
+   - Include appropriate keywords in the meta keywords tag for better search engine optimization.
 
-### SEO Improvement Recommendations:
-1. **Add Meta Description and Keywords:**
-   - Write a compelling meta description that accurately summarizes the page content and include relevant keywords.
-  
-2. **Update Title Tag:**
-   - Craft descriptive and unique title tags for each page using relevant keywords to improve search engine rankings.
-  
-3. **Host CSS Files Locally:**
-   - Download and host CSS files on your server to reduce dependencies on external sources and optimize page speed.
-  
-4. **Consolidate FontAwesome Versions:**
-   - Use a consistent version of FontAwesome across the website to maintain design uniformity.
-  
-5. **Include Alt Text for Images:**
-   - Add concise and descriptive alt text to all images for accessibility and SEO benefits.</p></div>
+2. **Empty Title Tag**:
+   - Provide a descriptive and compelling title tag that accurately represents the content of the page.
+
+3. **Missing Alt Attributes for Images**:
+   - Add alt attributes to all images to improve accessibility and provide context for visually impaired users and search engines.
+
+4. **No Content in Footer Section**:
+   - Populate the footer section with relevant content such as additional navigation links, contact information, and social media links to enhance user experience and SEO.
+
+5. **No Heading (h1) in Footer Section**:
+   - Include a primary heading (h1) in the footer section to signify importance and structure for search engines.
+
+6. **Inline JavaScript**:
+   - Consider moving the JavaScript code to an external file to improve page load speed and maintain clean HTML code.
+
+7. **Non-Descriptive Class Names**:
+   - Use more descriptive and semantic class names in the HTML elements to improve readability and SEO.
+
+8. **Over-Reliance on External Resources**:
+   - Reduce the number of external CSS and JavaScript files for faster loading times and better control over the website's performance.
+
+9. **Responsive Design Classes (e.g., d-flex, flex-column)**:
+   - Utilize responsive design classes consistently and wisely to ensure proper display and functionality across different devices and screen sizes.
+
+10. **Validation Errors**:
+    - Use HTML validation tools to check for and fix any markup errors for better SEO and accessibility.</p></div>
 				</div>
 			</div>
 		</section>
@@ -14253,9 +14253,23 @@
 
 	<input id="seo_success_count" type="hidden" value="67.65">
 	<input id="seo_warning_count" type="hidden" value="32.35">
+	<input id="seo_label_1" type="hidden" value="HTML Structure">
+	<input id="seo_label_2" type="hidden" value="Performance">
+
+	<input id="seo_label_1_warning_count" type="hidden" value="8">
+	<input id="seo_label_2_warning_count" type="hidden" value="3">
+
+	<input id="seo_label_1_success_count" type="hidden" value="8">
+	<input id="seo_label_2_success_count" type="hidden" value="3">
 	<script>
 		const seoSuccessCount = document.getElementById("seo_success_count");
 		const seoWarningCount = document.getElementById("seo_warning_count");
+		const seoLabel1 = document.getElementById("seo_label_1");
+		const seoLabel2 = document.getElementById("seo_label_2");
+		const seoLabel1WarningCount = document.getElementById("seo_label_1_warning_count");
+		const seoLabel2WarningCount = document.getElementById("seo_label_2_warning_count");
+		const seoLabel1SuccessCount = document.getElementById("seo_label_1_success_count");
+		const seoLabel2SuccessCount = document.getElementById("seo_label_2_success_count");
 
 		document.addEventListener('DOMContentLoaded', (event) => {
 			const seo = {
@@ -14275,10 +14289,10 @@
 				}]
 			};
 			const warning = {
-				labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs'],
+				labels: [seoLabel1.value,seoLabel2.value],
 				datasets: [{
 					label: 'Warnings',
-					data: [10, 20, 30, 40, 50],
+					data: [seoLabel1WarningCount.value,seoLabel2WarningCount.value],
 					backgroundColor: 'rgba(255, 99, 132, 0.7)',
 					borderColor: 'rgba(255, 99, 132, 1)',
 					borderWidth: 1,
@@ -14286,10 +14300,10 @@
 				}]
 			};
 			const success = {
-				labels: ['Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim'],
+				labels: [seoLabel1.value,seoLabel2.value],
 				datasets: [{
 					label: 'Successes',
-					data: [15, 25, 35, 45, 55],
+					data: [seoLabel1SuccessCount.value,seoLabel2SuccessCount.value],
 					backgroundColor: 'rgba(0, 255, 0, 0.7)',
 					borderColor: 'rgba(0, 255, 0, 1)',
 					borderWidth: 1,

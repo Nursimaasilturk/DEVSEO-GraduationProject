@@ -14198,9 +14198,23 @@
 
 	<input id="seo_success_count" type="hidden"/>
 	<input id="seo_warning_count" type="hidden"/>
+	<input id="seo_label_1" type="hidden"/>
+	<input id="seo_label_2" type="hidden"/>
+
+	<input id="seo_label_1_warning_count" type="hidden"/>
+	<input id="seo_label_2_warning_count" type="hidden"/>
+
+	<input id="seo_label_1_success_count" type="hidden"/>
+	<input id="seo_label_2_success_count" type="hidden"/>
 	<script>
 		const seoSuccessCount = document.getElementById("seo_success_count");
 		const seoWarningCount = document.getElementById("seo_warning_count");
+		const seoLabel1 = document.getElementById("seo_label_1");
+		const seoLabel2 = document.getElementById("seo_label_2");
+		const seoLabel1WarningCount = document.getElementById("seo_label_1_warning_count");
+		const seoLabel2WarningCount = document.getElementById("seo_label_2_warning_count");
+		const seoLabel1SuccessCount = document.getElementById("seo_label_1_success_count");
+		const seoLabel2SuccessCount = document.getElementById("seo_label_2_success_count");
 
 		document.addEventListener('DOMContentLoaded', (event) => {
 			const seo = {
@@ -14220,10 +14234,10 @@
 				}]
 			};
 			const warning = {
-				labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs'],
+				labels: [seoLabel1.value,seoLabel2.value],
 				datasets: [{
 					label: 'Warnings',
-					data: [10, 20, 30, 40, 50],
+					data: [seoLabel1WarningCount.value,seoLabel2WarningCount.value],
 					backgroundColor: 'rgba(255, 99, 132, 0.7)',
 					borderColor: 'rgba(255, 99, 132, 1)',
 					borderWidth: 1,
@@ -14231,10 +14245,10 @@
 				}]
 			};
 			const success = {
-				labels: ['Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim'],
+				labels: [seoLabel1.value,seoLabel2.value],
 				datasets: [{
 					label: 'Successes',
-					data: [15, 25, 35, 45, 55],
+					data: [seoLabel1SuccessCount.value,seoLabel2SuccessCount.value],
 					backgroundColor: 'rgba(0, 255, 0, 0.7)',
 					borderColor: 'rgba(0, 255, 0, 1)',
 					borderWidth: 1,
